@@ -12,147 +12,123 @@
         }
 
         body {
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-            line-height: 1.6;
-            background: #f5f5f5;
+            font-family: Verdana, Geneva, sans-serif;
+            background-color: #f5f5f5;
             color: #333;
+            line-height: 1.5;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            background-color: white;
+            min-height: 100vh;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
         }
 
         .header {
-            text-align: center;
-            background: linear-gradient(135deg, #000 0%, #333 100%);
+            background-color: #333;
             color: white;
-            padding: 30px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            font-size: 1.8em;
+            margin-bottom: 5px;
         }
 
         .header p {
-            font-size: 1.2rem;
+            font-size: 0.9em;
             opacity: 0.9;
-            letter-spacing: 0.5px;
         }
 
         .main-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            align-items: start;
+            gap: 20px;
+            padding: 20px;
+            min-height: calc(100vh - 140px);
         }
 
         .form-section {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+
+        .output-section {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
         }
 
         .field-section {
-            border: 2px solid #cccccc;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            background: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #fff;
         }
 
         .field-section legend {
-            font-weight: 600;
-            font-size: 1.1rem;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 0 10px;
             color: #333;
-            padding: 0 15px;
-            background: white;
-            border: 2px solid #cccccc;
-            border-radius: 20px;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
+            margin-bottom: 5px;
+            font-weight: bold;
             color: #333;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .required {
+            color: #d32f2f;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #cccccc;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: white;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-family: Verdana, Geneva, sans-serif;
+            font-size: 14px;
         }
 
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #333;
-            box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
+        .form-group select {
+            height: 40px;
         }
 
         .form-group textarea {
-            min-height: 100px;
             resize: vertical;
+            min-height: 80px;
         }
 
-        .required {
-            color: #dc3545;
-        }
-
-        .field-hint {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 5px;
-            display: block;
-        }
-
-        /* Conditional Logic Sections */
+        /* Conditional Sections Styling */
         .conditional-section {
-            background: #333;
-            border: 2px solid #333;
-            border-radius: 8px;
-            padding: 25px;
-            margin-top: 20px;
+            background-color: #000;
             color: white;
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: all 0.5s ease;
-        }
-
-        .conditional-section.show {
-            opacity: 1;
-            max-height: 2000px;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            animation: slideIn 0.3s ease-out;
         }
 
         .conditional-section legend {
-            background: #333;
             color: white;
-            border: 2px solid #555;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 0 10px;
         }
 
         .conditional-section .form-group label {
@@ -162,118 +138,91 @@
         .conditional-section .form-group input,
         .conditional-section .form-group select,
         .conditional-section .form-group textarea {
-            background: #f5f5f5;
-            border-color: #555;
+            background-color: white;
+            color: #333;
+        }
+
+        /* Nested Conditional Fields */
+        .nested-conditional-fields {
+            background-color: #333;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .nested-conditional-fields legend {
+            color: white;
+            font-size: 1em;
         }
 
         /* Output Section */
-        .output-section {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            display: flex;
-            flex-direction: column;
-            max-height: 80vh;
-        }
-
         .output-header {
-            padding: 20px 30px;
-            background: linear-gradient(135deg, #333 0%, #000 100%);
-            color: white;
-            border-radius: 10px 10px 0 0;
+            margin-bottom: 15px;
         }
 
         .output-header h3 {
-            font-size: 1.5rem;
+            color: #333;
             margin-bottom: 5px;
         }
 
         .output-header p {
-            opacity: 0.9;
-            font-size: 0.95rem;
+            color: #666;
+            font-size: 0.9em;
         }
 
         .output-container {
             flex: 1;
             display: flex;
             flex-direction: column;
-            padding: 20px 30px;
-            min-height: 0;
         }
 
         .output-text {
             flex: 1;
-            width: 100%;
-            padding: 20px;
-            border: 2px solid #cccccc;
-            border-radius: 6px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            line-height: 1.4;
-            background: #f9f9f9;
-            resize: none;
-            overflow-y: auto;
             min-height: 300px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            background-color: white;
+            resize: none;
+            line-height: 1.4;
         }
 
         .copy-button {
-            margin-top: 15px;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #333 0%, #000 100%);
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #333;
             color: white;
             border: none;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
+            border-radius: 3px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            font-family: Verdana, Geneva, sans-serif;
+            font-weight: bold;
         }
 
         .copy-button:hover {
-            background: linear-gradient(135deg, #000 0%, #333 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            background-color: #555;
         }
 
         .copy-button:active {
-            transform: translateY(0);
-        }
-
-        .copy-button.copied {
-            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            background-color: #000;
         }
 
         .footer {
+            background-color: #333;
+            color: white;
             text-align: center;
-            margin-top: 30px;
-            padding: 20px;
-            color: #666;
-            border-top: 1px solid #cccccc;
+            padding: 15px;
+            font-size: 0.9em;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .header h1 {
-                font-size: 2rem;
-            }
-            
-            .header p {
-                font-size: 1rem;
-            }
-        }
-
-        /* Animation keyframes */
-        @keyframes slideInFromTop {
+        /* Animations */
+        @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-10px);
             }
             to {
                 opacity: 1;
@@ -281,23 +230,31 @@
             }
         }
 
-        .form-section {
-            animation: slideInFromTop 0.6s ease-out;
-        }
-
-        .output-section {
-            animation: slideInFromTop 0.6s ease-out 0.2s both;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .output-text {
+                min-height: 250px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div style="display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <img src="YOUR_LOGO_URL_HERE" alt="Silver Fox Marketing STL Logo" style="height: 60px; width: auto;">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
                 <div style="text-align: center;">
                     <h1>Silver Fox Marketing STL</h1>
-                    <p>Internal Order Processing Tool - Restructured for CRM Integration</p>
+                    <p>Internal Order Processing Tool</p>
                 </div>
             </div>
         </div>
@@ -305,7 +262,7 @@
         <div class="main-content">
             <div class="form-section">
                 <form id="orderForm">
-                    <!-- Step 1A: Simplified Basic Order Information (removed manager name and quoted price) -->
+                    <!-- Basic Order Information -->
                     <fieldset class="field-section">
                         <legend>Basic Order Information</legend>
                         
@@ -322,7 +279,7 @@
                         </div>
                     </fieldset>
 
-                    <!-- Conditional section container (will be populated by JavaScript) -->
+                    <!-- Conditional Fields Container -->
                     <div id="conditionalFieldsContainer"></div>
 
                     <!-- Additional Information -->
@@ -357,29 +314,25 @@
         </div>
 
         <div class="footer">
-            <p>&copy; 2025 Silver Fox Marketing STL - Internal Order Processing Tool (Restructured Version)</p>
+            <p>&copy; 2025 Silver Fox Marketing STL - Internal Order Processing Tool</p>
         </div>
     </div>
 
     <script>
-        // Simplified Order Form Engine
         class OrderFormEngine {
             constructor() {
                 this.init();
             }
 
             init() {
-                // Set up event listeners
                 document.getElementById('orderType').addEventListener('change', (e) => {
                     this.handleOrderTypeChange(e.target.value);
                 });
 
-                // Set up copy button
                 document.getElementById('copyButton').addEventListener('click', () => {
                     this.copyToClipboard();
                 });
 
-                // Set up real-time output generation
                 const form = document.getElementById('orderForm');
                 form.addEventListener('input', () => {
                     this.generateOrderSummary();
@@ -389,14 +342,11 @@
                     this.generateOrderSummary();
                 });
 
-                // Initial generation
                 this.generateOrderSummary();
             }
 
             handleOrderTypeChange(orderType) {
                 const container = document.getElementById('conditionalFieldsContainer');
-                
-                // Clear existing conditional fields
                 container.innerHTML = '';
 
                 if (!orderType) {
@@ -404,36 +354,39 @@
                     return;
                 }
 
-                // Create conditional section based on order type
-                switch (orderType) {
-                    case 'Vehicle Merchandising':
-                        this.showVehicleMerchandisingFields(container);
-                        break;
-                    case 'Dealership Merchandising':
-                        this.showDealershipMerchandisingFields(container);
-                        break;
-                    case 'Custom Special Products':
-                        this.showCustomSpecialProductsFields(container);
-                        break;
-                    case 'New Template Request':
-                        this.showNewTemplateRequestFields(container);
-                        break;
-                    case 'Business Cards':
-                        this.showBusinessCardsFields(container);
-                        break;
-                }
-
-                // Regenerate output
+                this.createOrderTypeSection(container, orderType);
                 this.generateOrderSummary();
             }
 
-            showVehicleMerchandisingFields(container) {
-                const section = this.createConditionalSection('Vehicle Merchandising Details');
-                
+            createOrderTypeSection(container, orderType) {
+                switch (orderType) {
+                    case 'Vehicle Merchandising':
+                        this.createVehicleMerchandisingSection(container);
+                        break;
+                    case 'Dealership Merchandising':
+                        this.createDealershipMerchandisingSection(container);
+                        break;
+                    case 'Custom Special Products':
+                        this.createCustomSpecialProductsSection(container);
+                        break;
+                    case 'New Template Request':
+                        this.createNewTemplateRequestSection(container);
+                        break;
+                    case 'Business Cards':
+                        this.createBusinessCardsSection(container);
+                        break;
+                }
+            }
+
+            createVehicleMerchandisingSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
                 section.innerHTML = `
+                    <legend>Vehicle Merchandising Details</legend>
+                    
                     <div class="form-group">
-                        <label for="vehicleProductType">Product Type</label>
-                        <select id="vehicleProductType" name="vehicleProductType">
+                        <label for="vm_productType">Product Type <span class="required">*</span></label>
+                        <select id="vm_productType" name="vm_productType" required>
                             <option value="">Please Select:</option>
                             <option value="Windshield Banners">Windshield Banners</option>
                             <option value="Side Banners">Side Banners</option>
@@ -441,65 +394,68 @@
                             <option value="Specially Sized Graphics">Specially Sized Graphics</option>
                         </select>
                     </div>
-                    <div id="vehicleNestedFields"></div>
-                `;
 
+                    <div id="vm_nestedFields"></div>
+                `;
+                
                 container.appendChild(section);
                 this.animateIn(section);
 
-                // Set up nested conditional logic
-                document.getElementById('vehicleProductType').addEventListener('change', (e) => {
-                    this.handleVehicleProductTypeChange(e.target.value);
+                document.getElementById('vm_productType').addEventListener('change', (e) => {
+                    this.handleVehicleMerchandisingProductType(e.target.value);
                 });
-
-                // Add Material & Production Details
-                this.addMaterialProductionDetails(container);
             }
 
-            handleVehicleProductTypeChange(productType) {
-                const container = document.getElementById('vehicleNestedFields');
+            handleVehicleMerchandisingProductType(productType) {
+                const container = document.getElementById('vm_nestedFields');
                 container.innerHTML = '';
 
-                if (!productType) {
-                    this.generateOrderSummary();
-                    return;
-                }
+                if (!productType) return;
+
+                let nestedSection;
 
                 switch (productType) {
                     case 'Windshield Banners':
-                        this.showWindshieldBannersFields(container);
+                        nestedSection = this.createWindshieldBannersFields();
                         break;
                     case 'Side Banners':
-                        // TODO: Implement next
+                        nestedSection = this.createVehicleSideBannersFields();
                         break;
                     case 'Complement Graphics':
-                        // TODO: Implement next
+                        nestedSection = this.createVehicleComplementGraphicFields();
                         break;
                     case 'Specially Sized Graphics':
-                        // TODO: Implement next
+                        nestedSection = this.createVehicleSpeciallySizedGraphicFields();
                         break;
                 }
 
-                this.generateOrderSummary();
+                if (nestedSection) {
+                    container.appendChild(nestedSection);
+                    this.animateNestedIn(nestedSection);
+                }
             }
 
-            showWindshieldBannersFields(container) {
-                const nestedSection = this.createNestedSection('Windshield Banners Specifications');
-                
-                nestedSection.innerHTML = `
+            createWindshieldBannersFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <legend>Windshield Banners Specifications</legend>
+                    
                     <div class="form-group">
-                        <label for="windshieldProductSize">Product Size</label>
-                        <select id="windshieldProductSize" name="windshieldProductSize">
+                        <label for="wb_productSize">Product Size</label>
+                        <select id="wb_productSize" name="wb_productSize">
                             <option value="">Select</option>
                             <option value="Small">Small</option>
                             <option value="Medium">Medium</option>
                             <option value="Large">Large</option>
-                            <option value="Custom">Custom</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="XXL">XXL</option>
                         </select>
                     </div>
+
                     <div class="form-group">
-                        <label for="windshieldMaterialType">Material Type</label>
-                        <select id="windshieldMaterialType" name="windshieldMaterialType">
+                        <label for="wb_materialType">Material Type</label>
+                        <select id="wb_materialType" name="wb_materialType">
                             <option value="">Select</option>
                             <option value="Winter Vinyl">Winter Vinyl</option>
                             <option value="Summer Vinyl">Summer Vinyl</option>
@@ -508,63 +464,173 @@
                             <option value="Other">Other</option>
                         </select>
                     </div>
+
                     <div class="form-group">
-                        <label for="windshieldDesignDetails">Design/Layout Details</label>
-                        <textarea id="windshieldDesignDetails" name="windshieldDesignDetails" placeholder="Describe the design requirements, layout, colors, text, etc."></textarea>
+                        <label for="wb_text">Text</label>
+                        <textarea id="wb_text" name="wb_text" placeholder="Enter the text for the windshield banner"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wb_designDetails">Design/Layout Details</label>
+                        <textarea id="wb_designDetails" name="wb_designDetails" placeholder="Describe design layout, colors, fonts, and any specific requirements"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wb_artWorkUpload">Art Work Upload</label>
+                        <textarea id="wb_artWorkUpload" name="wb_artWorkUpload" placeholder="Describe any artwork files to be provided or reference existing artwork"></textarea>
                     </div>
                 `;
 
-                container.appendChild(nestedSection);
-                this.animateNestedIn(nestedSection);
-            }
-
-            createNestedSection(title) {
-                const section = document.createElement('div');
-                section.className = 'nested-conditional-fields';
-                
-                const header = document.createElement('h4');
-                header.textContent = title;
-                header.style.cssText = `
-                    color: white;
-                    margin-bottom: 20px;
-                    padding-bottom: 10px;
-                    border-bottom: 2px solid #555;
-                    font-size: 1.1rem;
-                `;
-                
-                section.appendChild(header);
                 return section;
             }
 
-            animateNestedIn(element) {
-                element.style.cssText += `
-                    opacity: 0;
-                    max-height: 0;
-                    overflow: hidden;
-                    transition: all 0.4s ease;
-                    margin-top: 20px;
-                    padding: 20px;
-                    background: rgba(255,255,255,0.1);
-                    border-radius: 6px;
-                    border: 1px solid #555;
+            createVehicleSideBannersFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <legend>Vehicle Side Banners Specifications</legend>
+                    
+                    <div class="form-group">
+                        <label for="vsb_productSize">Product Size</label>
+                        <select id="vsb_productSize" name="vsb_productSize">
+                            <option value="">Select</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vsb_materialType">Material Type</label>
+                        <select id="vsb_materialType" name="vsb_materialType">
+                            <option value="">Select</option>
+                            <option value="Winter Vinyl">Winter Vinyl</option>
+                            <option value="Summer Vinyl">Summer Vinyl</option>
+                            <option value="Perforated Vinyl">Perforated Vinyl</option>
+                            <option value="Poly Vinyl">Poly Vinyl</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vsb_text">Text</label>
+                        <textarea id="vsb_text" name="vsb_text" placeholder="Enter the text for the side banner"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vsb_designDetails">Design/Layout Details</label>
+                        <textarea id="vsb_designDetails" name="vsb_designDetails" placeholder="Describe design layout, colors, fonts, and any specific requirements"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vsb_artWorkUpload">Art Work Upload</label>
+                        <textarea id="vsb_artWorkUpload" name="vsb_artWorkUpload" placeholder="Describe any artwork files to be provided or reference existing artwork"></textarea>
+                    </div>
                 `;
-                
-                // Force reflow
-                element.offsetHeight;
-                
-                setTimeout(() => {
-                    element.style.opacity = '1';
-                    element.style.maxHeight = '1000px';
-                }, 50);
+
+                return section;
             }
 
-            showDealershipMerchandisingFields(container) {
-                const section = this.createConditionalSection('Dealership Merchandising Details');
-                
+            createVehicleComplementGraphicFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
                 section.innerHTML = `
+                    <legend>Vehicle Complement Graphic Specifications</legend>
+                    
                     <div class="form-group">
-                        <label for="dealershipProductType">Product Type</label>
-                        <select id="dealershipProductType" name="dealershipProductType">
+                        <label for="vcg_productSize">Product Size</label>
+                        <select id="vcg_productSize" name="vcg_productSize">
+                            <option value="">Select</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vcg_materialType">Material Type</label>
+                        <select id="vcg_materialType" name="vcg_materialType">
+                            <option value="">Select</option>
+                            <option value="Winter Vinyl">Winter Vinyl</option>
+                            <option value="Summer Vinyl">Summer Vinyl</option>
+                            <option value="Perforated Vinyl">Perforated Vinyl</option>
+                            <option value="Poly Vinyl">Poly Vinyl</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vcg_text">Text</label>
+                        <textarea id="vcg_text" name="vcg_text" placeholder="Enter the text for the complement graphic"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vcg_designDetails">Design/Layout Details</label>
+                        <textarea id="vcg_designDetails" name="vcg_designDetails" placeholder="Describe design layout, colors, fonts, and any specific requirements"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vcg_artWorkUpload">Art Work Upload</label>
+                        <textarea id="vcg_artWorkUpload" name="vcg_artWorkUpload" placeholder="Describe any artwork files to be provided or reference existing artwork"></textarea>
+                    </div>
+                `;
+
+                return section;
+            }
+
+            createVehicleSpeciallySizedGraphicFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <legend>Vehicle Specially Sized Graphic Specifications</legend>
+                    
+                    <div class="form-group">
+                        <label for="vsg_materialType">Material Type</label>
+                        <select id="vsg_materialType" name="vsg_materialType">
+                            <option value="">Select</option>
+                            <option value="Winter Vinyl">Winter Vinyl</option>
+                            <option value="Summer Vinyl">Summer Vinyl</option>
+                            <option value="Perforated Vinyl">Perforated Vinyl</option>
+                            <option value="Poly Vinyl">Poly Vinyl</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vsg_sizeDetails">Size Details <span class="required">*</span></label>
+                        <textarea id="vsg_sizeDetails" name="vsg_sizeDetails" placeholder="Provide exact dimensions and specifications" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vsg_text">Text</label>
+                        <textarea id="vsg_text" name="vsg_text" placeholder="Enter the text for the specially sized graphic"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vsg_designDetails">Design/Layout Details</label>
+                        <textarea id="vsg_designDetails" name="vsg_designDetails" placeholder="Describe design layout, colors, fonts, and any specific requirements"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vsg_artWorkUpload">Art Work Upload</label>
+                        <textarea id="vsg_artWorkUpload" name="vsg_artWorkUpload" placeholder="Describe any artwork files to be provided or reference existing artwork"></textarea>
+                    </div>
+                `;
+
+                return section;
+            }
+
+            createDealershipMerchandisingSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>Dealership Merchandising Details</legend>
+                    
+                    <div class="form-group">
+                        <label for="dm_productType">Product Type <span class="required">*</span></label>
+                        <select id="dm_productType" name="dm_productType" required>
                             <option value="">Please Select:</option>
                             <option value="Custom Designed Showroom Graphics">Custom Designed Showroom Graphics</option>
                             <option value="Custom Designed Interior Showroom Graphics">Custom Designed Interior Showroom Graphics</option>
@@ -574,173 +640,542 @@
                             <option value="Custom Banners">Custom Banners</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="dealershipLocation">Location/Placement</label>
-                        <textarea id="dealershipLocation" name="dealershipLocation" placeholder="Describe where the graphics will be placed"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="dealershipBranding">Branding Requirements</label>
-                        <textarea id="dealershipBranding" name="dealershipBranding" placeholder="Brand guidelines, colors, logos, messaging requirements"></textarea>
-                    </div>
-                `;
 
+                    <div id="dm_nestedFields"></div>
+                `;
+                
                 container.appendChild(section);
                 this.animateIn(section);
 
-                // Add Material & Production Details
-                this.addMaterialProductionDetails(container);
+                document.getElementById('dm_productType').addEventListener('change', (e) => {
+                    this.handleDealershipMerchandisingProductType(e.target.value);
+                });
             }
 
-            showCustomSpecialProductsFields(container) {
-                const section = this.createConditionalSection('Custom Special Products Details');
-                
-                section.innerHTML = `
-                    <div class="form-group">
-                        <label for="customProductDescription">Product Description</label>
-                        <textarea id="customProductDescription" name="customProductDescription" placeholder="Detailed description of the custom product needed"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="customProductRequirements">Special Requirements</label>
-                        <textarea id="customProductRequirements" name="customProductRequirements" placeholder="Any special materials, processes, or requirements"></textarea>
-                    </div>
-                `;
+            handleDealershipMerchandisingProductType(productType) {
+                const container = document.getElementById('dm_nestedFields');
+                container.innerHTML = '';
 
-                container.appendChild(section);
-                this.animateIn(section);
+                if (!productType) return;
 
-                // Add Material & Production Details
-                this.addMaterialProductionDetails(container);
+                let nestedSection;
+
+                switch (productType) {
+                    case 'Custom Designed Showroom Graphics':
+                        nestedSection = this.createShowroomGraphicsFields();
+                        break;
+                    case 'Custom Designed Interior Showroom Graphics':
+                        nestedSection = this.createInteriorShowroomGraphicsFields();
+                        break;
+                    case 'Window Graphics':
+                        nestedSection = this.createWindowGraphicsFields();
+                        break;
+                    case 'Floor Graphics':
+                        nestedSection = this.createFloorGraphicsFields();
+                        break;
+                    case 'Wall Graphics':
+                        nestedSection = this.createWallGraphicsFields();
+                        break;
+                    case 'Custom Banners':
+                        nestedSection = this.createCustomBannersFields();
+                        break;
+                }
+
+                if (nestedSection) {
+                    container.appendChild(nestedSection);
+                    this.animateNestedIn(nestedSection);
+                }
             }
 
-            showNewTemplateRequestFields(container) {
-                const section = this.createConditionalSection('New Template Request Details');
-                
+            createShowroomGraphicsFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
                 section.innerHTML = `
+                    <legend>Custom Designed Showroom Graphics Specifications</legend>
+                    
                     <div class="form-group">
-                        <label for="templateType">Template Type</label>
-                        <select id="templateType" name="templateType">
-                            <option value="">Please Select:</option>
-                            <option value="Vehicle Graphics Template">Vehicle Graphics Template</option>
-                            <option value="Showroom Display Template">Showroom Display Template</option>
-                            <option value="Marketing Material Template">Marketing Material Template</option>
-                            <option value="Signage Template">Signage Template</option>
+                        <label for="csg_location">Location/Area</label>
+                        <select id="csg_location" name="csg_location">
+                            <option value="">Select</option>
+                            <option value="Main Entrance">Main Entrance</option>
+                            <option value="Service Area">Service Area</option>
+                            <option value="Sales Floor">Sales Floor</option>
+                            <option value="Waiting Area">Waiting Area</option>
+                            <option value="Exterior">Exterior</option>
+                            <option value="Multiple Locations">Multiple Locations</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="csg_productSize">Product Size</label>
+                        <select id="csg_productSize" name="csg_productSize">
+                            <option value="">Select</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="Custom Size">Custom Size</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="csg_materialType">Material Type</label>
+                        <select id="csg_materialType" name="csg_materialType">
+                            <option value="">Select</option>
+                            <option value="Vinyl">Vinyl</option>
+                            <option value="Acrylic">Acrylic</option>
+                            <option value="Aluminum">Aluminum</option>
+                            <option value="Foam Core">Foam Core</option>
+                            <option value="Styrene">Styrene</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
+
                     <div class="form-group">
-                        <label for="templateDescription">Template Description</label>
-                        <textarea id="templateDescription" name="templateDescription" placeholder="Describe the template you need created"></textarea>
+                        <label for="csg_text">Text Content</label>
+                        <textarea id="csg_text" name="csg_text" placeholder="Enter the text content for the showroom graphics"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="csg_designDetails">Design/Layout Details</label>
+                        <textarea id="csg_designDetails" name="csg_designDetails" placeholder="Describe design layout, colors, branding requirements, and specifications"></textarea>
                     </div>
                 `;
 
-                container.appendChild(section);
-                this.animateIn(section);
-
-                // Templates typically don't need material details - they're digital/design templates
-            }
-
-            showBusinessCardsFields(container) {
-                const section = this.createConditionalSection('Business Cards Details');
-                
-                section.innerHTML = `
-                    <div class="form-group">
-                        <label for="cardQuantity">Quantity</label>
-                        <select id="cardQuantity" name="cardQuantity">
-                            <option value="">Please Select:</option>
-                            <option value="250">250</option>
-                            <option value="500">500</option>
-                            <option value="1000">1000</option>
-                            <option value="2500">2500</option>
-                            <option value="5000">5000</option>
-                            <option value="Other">Other (specify in notes)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="cardFinish">Finish</label>
-                        <select id="cardFinish" name="cardFinish">
-                            <option value="">Please Select:</option>
-                            <option value="Matte">Matte</option>
-                            <option value="Gloss">Gloss</option>
-                            <option value="Silk/Satin">Silk/Satin</option>
-                            <option value="Linen">Linen</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="cardInfo">Contact Information</label>
-                        <textarea id="cardInfo" name="cardInfo" placeholder="Name, title, phone, email, address, etc."></textarea>
-                    </div>
-                `;
-
-                container.appendChild(section);
-                this.animateIn(section);
-
-                // Business cards have their own material specifications built into the card options
-            }
-
-            addMaterialProductionDetails(container) {
-                const materialSection = this.createConditionalSection('Material & Production Details');
-                
-                materialSection.innerHTML = `
-                    <div class="form-group">
-                        <label for="materialType">Material Type</label>
-                        <select id="materialType" name="materialType">
-                            <option value="">Please Select:</option>
-                            <option value="Vinyl - 3M IJ35C-10 (Calendered - 3 year outdoor)">Vinyl - 3M IJ35C-10 (Calendered - 3 year outdoor)</option>
-                            <option value="Vinyl - 3M IJ40C-10 (Calendered - 4 year outdoor)">Vinyl - 3M IJ40C-10 (Calendered - 4 year outdoor)</option>
-                            <option value="Vinyl - 3M IJ180CV3-10 (Cast - 10 year outdoor)">Vinyl - 3M IJ180CV3-10 (Cast - 10 year outdoor)</option>
-                            <option value="Vinyl - Avery MPI 1105 (Cast - 5 year outdoor)">Vinyl - Avery MPI 1105 (Cast - 5 year outdoor)</option>
-                            <option value="Vinyl - Avery MPI 2923 (Calendered - 3 year outdoor)">Vinyl - Avery MPI 2923 (Calendered - 3 year outdoor)</option>
-                            <option value="Vinyl - Static Cling">Vinyl - Static Cling</option>
-                            <option value="Vinyl - One Way Vision (Perforated)">Vinyl - One Way Vision (Perforated)</option>
-                            <option value="Banner - 13oz Vinyl">Banner - 13oz Vinyl</option>
-                            <option value="Banner - 18oz Vinyl">Banner - 18oz Vinyl</option>
-                            <option value="Coroplast - 4mm">Coroplast - 4mm</option>
-                            <option value="Aluminum - .040">Aluminum - .040</option>
-                            <option value="Aluminum - .063">Aluminum - .063</option>
-                            <option value="Foam Board - 3/16">Foam Board - 3/16</option>
-                            <option value="PVC - 3mm">PVC - 3mm</option>
-                            <option value="Mesh Banner">Mesh Banner</option>
-                            <option value="Other (specify in notes)">Other (specify in notes)</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="productType">Product Type</label>
-                        <input type="text" id="productType" name="productType" placeholder="Describe the specific product type">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dimensions">Dimensions</label>
-                        <input type="text" id="dimensions" name="dimensions" placeholder="Width x Height (e.g., 24&quot; x 18&quot;)">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="quantity">Quantity</label>
-                        <input type="number" id="quantity" name="quantity" min="1" placeholder="1">
-                    </div>
-                `;
-
-                container.appendChild(materialSection);
-                this.animateIn(materialSection);
-            }
-
-            createConditionalSection(title) {
-                const section = document.createElement('fieldset');
-                section.className = 'conditional-section';
-                
-                const legend = document.createElement('legend');
-                legend.textContent = title;
-                section.appendChild(legend);
-                
                 return section;
             }
 
+            createInteriorShowroomGraphicsFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <legend>Custom Designed Interior Showroom Graphics Specifications</legend>
+                    
+                    <div class="form-group">
+                        <label for="isg_specificArea">Specific Interior Area</label>
+                        <select id="isg_specificArea" name="isg_specificArea">
+                            <option value="">Select</option>
+                            <option value="Customer Lounge">Customer Lounge</option>
+                            <option value="Service Waiting Area">Service Waiting Area</option>
+                            <option value="Parts Department">Parts Department</option>
+                            <option value="Finance Office">Finance Office</option>
+                            <option value="Sales Offices">Sales Offices</option>
+                            <option value="Hallways">Hallways</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isg_displayType">Display Type</label>
+                        <select id="isg_displayType" name="isg_displayType">
+                            <option value="">Select</option>
+                            <option value="Wall Mount">Wall Mount</option>
+                            <option value="Standing Display">Standing Display</option>
+                            <option value="Hanging Display">Hanging Display</option>
+                            <option value="Counter Display">Counter Display</option>
+                            <option value="Floor Decal">Floor Decal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isg_productSize">Product Size</label>
+                        <select id="isg_productSize" name="isg_productSize">
+                            <option value="">Select</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="Custom Size">Custom Size</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isg_brandingRequirements">Branding Requirements</label>
+                        <textarea id="isg_brandingRequirements" name="isg_brandingRequirements" placeholder="Specify dealership branding, manufacturer requirements, color schemes"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="isg_designDetails">Design/Layout Details</label>
+                        <textarea id="isg_designDetails" name="isg_designDetails" placeholder="Describe design specifications and installation requirements"></textarea>
+                    </div>
+                `;
+
+                return section;
+            }
+
+            createWindowGraphicsFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <legend>Window Graphics Specifications</legend>
+                    
+                    <div class="form-group">
+                        <label for="wg_windowType">Window Type</label>
+                        <select id="wg_windowType" name="wg_windowType">
+                            <option value="">Select</option>
+                            <option value="Storefront Windows">Storefront Windows</option>
+                            <option value="Service Bay Windows">Service Bay Windows</option>
+                            <option value="Office Windows">Office Windows</option>
+                            <option value="Vehicle Windows">Vehicle Windows</option>
+                            <option value="Entry Doors">Entry Doors</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wg_visibility">Visibility Requirements</label>
+                        <select id="wg_visibility" name="wg_visibility">
+                            <option value="">Select</option>
+                            <option value="Full Coverage">Full Coverage</option>
+                            <option value="Partial Coverage">Partial Coverage</option>
+                            <option value="Perforated (See-Through)">Perforated (See-Through)</option>
+                            <option value="Frosted/Privacy">Frosted/Privacy</option>
+                            <option value="Clear with Graphics">Clear with Graphics</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wg_productSize">Product Size</label>
+                        <select id="wg_productSize" name="wg_productSize">
+                            <option value="">Select</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="Custom Dimensions">Custom Dimensions</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wg_materialType">Material Type</label>
+                        <select id="wg_materialType" name="wg_materialType">
+                            <option value="">Select</option>
+                            <option value="Perforated Vinyl">Perforated Vinyl</option>
+                            <option value="Clear Cling">Clear Cling</option>
+                            <option value="Frosted Vinyl">Frosted Vinyl</option>
+                            <option value="Standard Vinyl">Standard Vinyl</option>
+                            <option value="Etched Glass Effect">Etched Glass Effect</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wg_designDetails">Design/Layout Details</label>
+                        <textarea id="wg_designDetails" name="wg_designDetails" placeholder="Describe graphics content, text, logos, and design specifications"></textarea>
+                    </div>
+                `;
+
+                return section;
+            }
+
+            createFloorGraphicsFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <legend>Floor Graphics Specifications</legend>
+                    
+                    <div class="form-group">
+                        <label for="fg_floorType">Floor Surface Type</label>
+                        <select id="fg_floorType" name="fg_floorType">
+                            <option value="">Select</option>
+                            <option value="Tile">Tile</option>
+                            <option value="Concrete">Concrete</option>
+                            <option value="Carpet">Carpet</option>
+                            <option value="Hardwood">Hardwood</option>
+                            <option value="Laminate">Laminate</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fg_trafficExpectation">Traffic Expectation</label>
+                        <select id="fg_trafficExpectation" name="fg_trafficExpectation">
+                            <option value="">Select</option>
+                            <option value="Light Traffic">Light Traffic</option>
+                            <option value="Moderate Traffic">Moderate Traffic</option>
+                            <option value="Heavy Traffic">Heavy Traffic</option>
+                            <option value="Industrial/Commercial">Industrial/Commercial</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fg_productSize">Product Size</label>
+                        <select id="fg_productSize" name="fg_productSize">
+                            <option value="">Select</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="Custom Dimensions">Custom Dimensions</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fg_durabilityRequirements">Durability Requirements</label>
+                        <select id="fg_durabilityRequirements" name="fg_durabilityRequirements">
+                            <option value="">Select</option>
+                            <option value="Temporary (1-7 days)">Temporary (1-7 days)</option>
+                            <option value="Short Term (1-4 weeks)">Short Term (1-4 weeks)</option>
+                            <option value="Medium Term (1-6 months)">Medium Term (1-6 months)</option>
+                            <option value="Long Term (6+ months)">Long Term (6+ months)</option>
+                            <option value="Permanent">Permanent</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fg_designDetails">Design/Layout Details</label>
+                        <textarea id="fg_designDetails" name="fg_designDetails" placeholder="Describe graphics content, directional elements, branding, and specifications"></textarea>
+                    </div>
+                `;
+
+                return section;
+            }
+
+            createWallGraphicsFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <legend>Wall Graphics Specifications</legend>
+                    
+                    <div class="form-group">
+                        <label for="wlg_wallSurface">Wall Surface Type</label>
+                        <select id="wlg_wallSurface" name="wlg_wallSurface">
+                            <option value="">Select</option>
+                            <option value="Painted Drywall">Painted Drywall</option>
+                            <option value="Textured Wall">Textured Wall</option>
+                            <option value="Brick">Brick</option>
+                            <option value="Metal">Metal</option>
+                            <option value="Glass">Glass</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wlg_installationHeight">Installation Height</label>
+                        <select id="wlg_installationHeight" name="wlg_installationHeight">
+                            <option value="">Select</option>
+                            <option value="Floor Level">Floor Level</option>
+                            <option value="Eye Level">Eye Level</option>
+                            <option value="Above Eye Level">Above Eye Level</option>
+                            <option value="High Wall">High Wall</option>
+                            <option value="Full Wall Coverage">Full Wall Coverage</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wlg_productSize">Product Size</label>
+                        <select id="wlg_productSize" name="wlg_productSize">
+                            <option value="">Select</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="Wall Mural">Wall Mural</option>
+                            <option value="Custom Dimensions">Custom Dimensions</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wlg_materialType">Material Type</label>
+                        <select id="wlg_materialType" name="wlg_materialType">
+                            <option value="">Select</option>
+                            <option value="Vinyl Wall Graphic">Vinyl Wall Graphic</option>
+                            <option value="Fabric Wall Covering">Fabric Wall Covering</option>
+                            <option value="Removable Adhesive">Removable Adhesive</option>
+                            <option value="Permanent Adhesive">Permanent Adhesive</option>
+                            <option value="Canvas">Canvas</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wlg_removalRequirements">Removal Requirements</label>
+                        <select id="wlg_removalRequirements" name="wlg_removalRequirements">
+                            <option value="">Select</option>
+                            <option value="Easily Removable">Easily Removable</option>
+                            <option value="Semi-Permanent">Semi-Permanent</option>
+                            <option value="Permanent Installation">Permanent Installation</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wlg_designDetails">Design/Layout Details</label>
+                        <textarea id="wlg_designDetails" name="wlg_designDetails" placeholder="Describe graphics content, branding elements, colors, and installation specifications"></textarea>
+                    </div>
+                `;
+
+                return section;
+            }
+
+            createCustomBannersFields() {
+                const section = document.createElement('fieldset');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <legend>Custom Banners Specifications</legend>
+                    
+                    <div class="form-group">
+                        <label for="cb_bannerType">Banner Type</label>
+                        <select id="cb_bannerType" name="cb_bannerType">
+                            <option value="">Select</option>
+                            <option value="Indoor Hanging Banner">Indoor Hanging Banner</option>
+                            <option value="Outdoor Banner">Outdoor Banner</option>
+                            <option value="Retractable Banner">Retractable Banner</option>
+                            <option value="Table Top Banner">Table Top Banner</option>
+                            <option value="Pole Banner">Pole Banner</option>
+                            <option value="Mesh Banner">Mesh Banner</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cb_productSize">Product Size</label>
+                        <select id="cb_productSize" name="cb_productSize">
+                            <option value="">Select</option>
+                            <option value="2' x 4'">2' x 4'</option>
+                            <option value="3' x 6'">3' x 6'</option>
+                            <option value="4' x 8'">4' x 8'</option>
+                            <option value="5' x 10'">5' x 10'</option>
+                            <option value="Custom Size">Custom Size</option>
+                        </select>
+                    </div>
+
+                    <div class="custom-size-toggle">
+                        <input type="checkbox" id="cb_customSizeToggle" name="cb_customSizeToggle">
+                        <label for="cb_customSizeToggle">Custom Size</label>
+                    </div>
+                    
+                    <div class="custom-size-fields" id="cb_customSizeFields">
+                        <div class="form-group">
+                            <label for="cb_customWidth">Custom Width</label>
+                            <input type="text" id="cb_customWidth" name="cb_customWidth" placeholder="e.g., 6'">
+                        </div>
+                        <div class="form-group">
+                            <label for="cb_customHeight">Custom Height</label>
+                            <input type="text" id="cb_customHeight" name="cb_customHeight" placeholder="e.g., 12'">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cb_materialType">Material Type</label>
+                        <select id="cb_materialType" name="cb_materialType">
+                            <option value="">Select</option>
+                            <option value="Vinyl Banner">Vinyl Banner</option>
+                            <option value="Mesh Banner">Mesh Banner</option>
+                            <option value="Fabric Banner">Fabric Banner</option>
+                            <option value="Canvas">Canvas</option>
+                            <option value="Polyester">Polyester</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cb_installationMethod">Installation Method</label>
+                        <select id="cb_installationMethod" name="cb_installationMethod">
+                            <option value="">Select</option>
+                            <option value="Grommets">Grommets</option>
+                            <option value="Pole Pockets">Pole Pockets</option>
+                            <option value="Velcro Strips">Velcro Strips</option>
+                            <option value="Adhesive Backing">Adhesive Backing</option>
+                            <option value="Frame Mount">Frame Mount</option>
+                            <option value="Stand Alone">Stand Alone</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cb_usageEnvironment">Usage Environment</label>
+                        <select id="cb_usageEnvironment" name="cb_usageEnvironment">
+                            <option value="">Select</option>
+                            <option value="Indoor Only">Indoor Only</option>
+                            <option value="Outdoor Temporary">Outdoor Temporary</option>
+                            <option value="Outdoor Long-term">Outdoor Long-term</option>
+                            <option value="Trade Show">Trade Show</option>
+                            <option value="Special Event">Special Event</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cb_designDetails">Design/Layout Details</label>
+                        <textarea id="cb_designDetails" name="cb_designDetails" placeholder="Describe banner content, messaging, branding, colors, and design specifications"></textarea>
+                    </div>
+                `;
+
+                // Set up custom size toggle
+                setTimeout(() => {
+                    const toggle = section.querySelector('#cb_customSizeToggle');
+                    const fields = section.querySelector('#cb_customSizeFields');
+                    
+                    if (toggle && fields) {
+                        toggle.addEventListener('change', () => {
+                            if (toggle.checked) {
+                                fields.classList.add('show');
+                            } else {
+                                fields.classList.remove('show');
+                            }
+                        });
+                    }
+                }, 100);
+
+                return section;
+            }
+
+            createCustomSpecialProductsSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>Custom Special Products Details</legend>
+                    <div class="form-group">
+                        <p style="color: white; font-style: italic;">
+                            Custom Special Products logic will be implemented in Phase 4
+                        </p>
+                    </div>
+                `;
+                container.appendChild(section);
+                this.animateIn(section);
+            }
+
+            createNewTemplateRequestSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>New Template Request Details</legend>
+                    <div class="form-group">
+                        <p style="color: white; font-style: italic;">
+                            New Template Request logic will be implemented in Phase 5
+                        </p>
+                    </div>
+                `;
+                container.appendChild(section);
+                this.animateIn(section);
+            }
+
+            createBusinessCardsSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>Business Cards Details</legend>
+                    <div class="form-group">
+                        <p style="color: white; font-style: italic;">
+                            Business Cards logic will be implemented in Phase 6
+                        </p>
+                    </div>
+                `;
+                container.appendChild(section);
+                this.animateIn(section);
+            }
+
             animateIn(element) {
-                // Force reflow
-                element.offsetHeight;
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(-10px)';
                 
                 setTimeout(() => {
-                    element.classList.add('show');
+                    element.style.transition = 'all 0.3s ease-out';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }, 10);
+            }
+
+            animateNestedIn(element) {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(-10px)';
+                
+                setTimeout(() => {
+                    element.style.transition = 'all 0.3s ease-out';
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
                 }, 10);
             }
 
@@ -748,91 +1183,268 @@
                 const formData = new FormData(document.getElementById('orderForm'));
                 const data = Object.fromEntries(formData.entries());
                 
-                let output = "";
+                let summary = '';
                 
-                const now = new Date();
-                output += `**Generated:** ${now.toLocaleDateString()} at ${now.toLocaleTimeString()}\n\n`;
-                
-                // Basic Order Information
                 if (data.orderType) {
-                    output += "**BASIC ORDER INFORMATION:**\n";
-                    output += `**Order Type:** ${data.orderType}\n\n`;
-                }
-                
-                // Material & Production Details
-                const materialFields = ['materialType', 'productType', 'dimensions', 'quantity'];
-                const hasMateriData = materialFields.some(field => data[field]);
-                
-                if (hasMateriData) {
-                    output += "**MATERIAL & PRODUCTION DETAILS:**\n";
-                    if (data.materialType) output += `**Material Type:** ${data.materialType}\n`;
-                    if (data.productType) output += `**Product Type:** ${data.productType}\n`;
-                    if (data.dimensions) output += `**Dimensions:** ${data.dimensions}\n`;
-                    if (data.quantity) output += `**Quantity:** ${data.quantity}\n`;
-                    output += "\n";
-                }
-                
-                // Order-Specific Details
-                if (data.orderType) {
-                    output += "**ORDER-SPECIFIC DETAILS:**\n";
+                    summary += `**ORDER TYPE:** ${data.orderType}\n\n`;
                     
                     switch (data.orderType) {
                         case 'Vehicle Merchandising':
-                            if (data.vehicleProductType) output += `**Vehicle Product Type:** ${data.vehicleProductType}\n`;
-                            if (data.vehicleSpecifications) output += `**Specifications:** ${data.vehicleSpecifications}\n`;
+                            summary += this.generateVehicleMerchandisingSummary(data);
                             break;
                         case 'Dealership Merchandising':
-                            if (data.dealershipProductType) output += `**Dealership Product Type:** ${data.dealershipProductType}\n`;
-                            if (data.dealershipLocation) output += `**Location/Placement:** ${data.dealershipLocation}\n`;
-                            if (data.dealershipBranding) output += `**Branding Requirements:** ${data.dealershipBranding}\n`;
+                            summary += this.generateDealershipMerchandisingSummary(data);
                             break;
                         case 'Custom Special Products':
-                            if (data.customProductDescription) output += `**Product Description:** ${data.customProductDescription}\n`;
-                            if (data.customProductRequirements) output += `**Special Requirements:** ${data.customProductRequirements}\n`;
+                            summary += this.generateCustomSpecialProductsSummary(data);
                             break;
                         case 'New Template Request':
-                            if (data.templateType) output += `**Template Type:** ${data.templateType}\n`;
-                            if (data.templateDescription) output += `**Description:** ${data.templateDescription}\n`;
+                            summary += this.generateNewTemplateRequestSummary(data);
                             break;
                         case 'Business Cards':
-                            if (data.cardQuantity) output += `**Quantity:** ${data.cardQuantity}\n`;
-                            if (data.cardFinish) output += `**Finish:** ${data.cardFinish}\n`;
-                            if (data.cardInfo) output += `**Contact Information:** ${data.cardInfo}\n`;
+                            summary += this.generateBusinessCardsSummary(data);
                             break;
                     }
-                    output += "\n";
                 }
-                
-                // Additional Information
-                if (data.specialInstructions || data.poNumber) {
-                    output += "**ADDITIONAL INFORMATION:**\n";
-                    if (data.specialInstructions) output += `**Special Instructions:** ${data.specialInstructions}\n`;
-                    if (data.poNumber) output += `**PO Number:** ${data.poNumber}\n`;
+
+                if (data.specialInstructions) {
+                    summary += `**SPECIAL INSTRUCTIONS:**\n${data.specialInstructions}\n\n`;
                 }
+
+                if (data.poNumber) {
+                    summary += `**PO NUMBER:** ${data.poNumber}\n\n`;
+                }
+
+                if (!summary.trim()) {
+                    summary = 'Select an order type to begin generating your order summary...';
+                }
+
+                document.getElementById('outputText').value = summary;
+            }
+
+            generateVehicleMerchandisingSummary(data) {
+                let summary = '';
+
+                if (data.vm_productType) {
+                    summary += `**VEHICLE MERCHANDISING DETAILS:**\n`;
+                    summary += `Product Type: ${data.vm_productType}\n\n`;
+                }
+
+                if (data.vm_productType) {
+                    switch (data.vm_productType) {
+                        case 'Windshield Banners':
+                            summary += this.generateWindshieldBannersSummary(data);
+                            break;
+                        case 'Side Banners':
+                            summary += this.generateVehicleSideBannersSummary(data);
+                            break;
+                        case 'Complement Graphics':
+                            summary += this.generateVehicleComplementGraphicSummary(data);
+                            break;
+                        case 'Specially Sized Graphics':
+                            summary += this.generateVehicleSpeciallySizedGraphicSummary(data);
+                            break;
+                    }
+                }
+
+                return summary;
+            }
+
+            generateWindshieldBannersSummary(data) {
+                let summary = '**WINDSHIELD BANNERS SPECIFICATIONS:**\n';
                 
-                document.getElementById('outputText').value = output;
+                if (data.wb_productSize) summary += `Product Size: ${data.wb_productSize}\n`;
+                if (data.wb_materialType) summary += `Material Type: ${data.wb_materialType}\n`;
+                if (data.wb_text) summary += `Text: ${data.wb_text}\n`;
+                if (data.wb_designDetails) summary += `Design/Layout Details: ${data.wb_designDetails}\n`;
+                if (data.wb_artWorkUpload) summary += `Art Work Upload: ${data.wb_artWorkUpload}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateVehicleSideBannersSummary(data) {
+                let summary = '**VEHICLE SIDE BANNERS SPECIFICATIONS:**\n';
+                
+                if (data.vsb_productSize) summary += `Product Size: ${data.vsb_productSize}\n`;
+                if (data.vsb_materialType) summary += `Material Type: ${data.vsb_materialType}\n`;
+                if (data.vsb_text) summary += `Text: ${data.vsb_text}\n`;
+                if (data.vsb_designDetails) summary += `Design/Layout Details: ${data.vsb_designDetails}\n`;
+                if (data.vsb_artWorkUpload) summary += `Art Work Upload: ${data.vsb_artWorkUpload}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateVehicleComplementGraphicSummary(data) {
+                let summary = '**VEHICLE COMPLEMENT GRAPHIC SPECIFICATIONS:**\n';
+                
+                if (data.vcg_productSize) summary += `Product Size: ${data.vcg_productSize}\n`;
+                if (data.vcg_materialType) summary += `Material Type: ${data.vcg_materialType}\n`;
+                if (data.vcg_text) summary += `Text: ${data.vcg_text}\n`;
+                if (data.vcg_designDetails) summary += `Design/Layout Details: ${data.vcg_designDetails}\n`;
+                if (data.vcg_artWorkUpload) summary += `Art Work Upload: ${data.vcg_artWorkUpload}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateVehicleSpeciallySizedGraphicSummary(data) {
+                let summary = '**VEHICLE SPECIALLY SIZED GRAPHIC SPECIFICATIONS:**\n';
+                
+                if (data.vsg_materialType) summary += `Material Type: ${data.vsg_materialType}\n`;
+                if (data.vsg_sizeDetails) summary += `Size Details: ${data.vsg_sizeDetails}\n`;
+                if (data.vsg_text) summary += `Text: ${data.vsg_text}\n`;
+                if (data.vsg_designDetails) summary += `Design/Layout Details: ${data.vsg_designDetails}\n`;
+                if (data.vsg_artWorkUpload) summary += `Art Work Upload: ${data.vsg_artWorkUpload}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateDealershipMerchandisingSummary(data) {
+                let summary = '';
+
+                if (data.dm_productType) {
+                    summary += `**DEALERSHIP MERCHANDISING DETAILS:**\n`;
+                    summary += `Product Type: ${data.dm_productType}\n\n`;
+                }
+
+                if (data.dm_productType) {
+                    switch (data.dm_productType) {
+                        case 'Custom Designed Showroom Graphics':
+                            summary += this.generateShowroomGraphicsSummary(data);
+                            break;
+                        case 'Custom Designed Interior Showroom Graphics':
+                            summary += this.generateInteriorShowroomGraphicsSummary(data);
+                            break;
+                        case 'Window Graphics':
+                            summary += this.generateWindowGraphicsSummary(data);
+                            break;
+                        case 'Floor Graphics':
+                            summary += this.generateFloorGraphicsSummary(data);
+                            break;
+                        case 'Wall Graphics':
+                            summary += this.generateWallGraphicsSummary(data);
+                            break;
+                        case 'Custom Banners':
+                            summary += this.generateCustomBannersSummary(data);
+                            break;
+                    }
+                }
+
+                return summary;
+            }
+
+            generateShowroomGraphicsSummary(data) {
+                let summary = '**CUSTOM DESIGNED SHOWROOM GRAPHICS SPECIFICATIONS:**\n';
+                
+                if (data.csg_location) summary += `Location/Area: ${data.csg_location}\n`;
+                if (data.csg_productSize) summary += `Product Size: ${data.csg_productSize}\n`;
+                if (data.csg_materialType) summary += `Material Type: ${data.csg_materialType}\n`;
+                if (data.csg_text) summary += `Text Content: ${data.csg_text}\n`;
+                if (data.csg_designDetails) summary += `Design/Layout Details: ${data.csg_designDetails}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateInteriorShowroomGraphicsSummary(data) {
+                let summary = '**CUSTOM DESIGNED INTERIOR SHOWROOM GRAPHICS SPECIFICATIONS:**\n';
+                
+                if (data.isg_specificArea) summary += `Specific Interior Area: ${data.isg_specificArea}\n`;
+                if (data.isg_displayType) summary += `Display Type: ${data.isg_displayType}\n`;
+                if (data.isg_productSize) summary += `Product Size: ${data.isg_productSize}\n`;
+                if (data.isg_brandingRequirements) summary += `Branding Requirements: ${data.isg_brandingRequirements}\n`;
+                if (data.isg_designDetails) summary += `Design/Layout Details: ${data.isg_designDetails}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateWindowGraphicsSummary(data) {
+                let summary = '**WINDOW GRAPHICS SPECIFICATIONS:**\n';
+                
+                if (data.wg_windowType) summary += `Window Type: ${data.wg_windowType}\n`;
+                if (data.wg_visibility) summary += `Visibility Requirements: ${data.wg_visibility}\n`;
+                if (data.wg_productSize) summary += `Product Size: ${data.wg_productSize}\n`;
+                if (data.wg_materialType) summary += `Material Type: ${data.wg_materialType}\n`;
+                if (data.wg_designDetails) summary += `Design/Layout Details: ${data.wg_designDetails}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateFloorGraphicsSummary(data) {
+                let summary = '**FLOOR GRAPHICS SPECIFICATIONS:**\n';
+                
+                if (data.fg_floorType) summary += `Floor Surface Type: ${data.fg_floorType}\n`;
+                if (data.fg_trafficExpectation) summary += `Traffic Expectation: ${data.fg_trafficExpectation}\n`;
+                if (data.fg_productSize) summary += `Product Size: ${data.fg_productSize}\n`;
+                if (data.fg_durabilityRequirements) summary += `Durability Requirements: ${data.fg_durabilityRequirements}\n`;
+                if (data.fg_designDetails) summary += `Design/Layout Details: ${data.fg_designDetails}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateWallGraphicsSummary(data) {
+                let summary = '**WALL GRAPHICS SPECIFICATIONS:**\n';
+                
+                if (data.wlg_wallSurface) summary += `Wall Surface Type: ${data.wlg_wallSurface}\n`;
+                if (data.wlg_installationHeight) summary += `Installation Height: ${data.wlg_installationHeight}\n`;
+                if (data.wlg_productSize) summary += `Product Size: ${data.wlg_productSize}\n`;
+                if (data.wlg_materialType) summary += `Material Type: ${data.wlg_materialType}\n`;
+                if (data.wlg_removalRequirements) summary += `Removal Requirements: ${data.wlg_removalRequirements}\n`;
+                if (data.wlg_designDetails) summary += `Design/Layout Details: ${data.wlg_designDetails}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateCustomBannersSummary(data) {
+                let summary = '**CUSTOM BANNERS SPECIFICATIONS:**\n';
+                
+                if (data.cb_bannerType) summary += `Banner Type: ${data.cb_bannerType}\n`;
+                if (data.cb_productSize) summary += `Product Size: ${data.cb_productSize}\n`;
+                if (data.cb_customSizeToggle && (data.cb_customWidth || data.cb_customHeight)) {
+                    summary += `Custom Size: ${data.cb_customWidth || ''} x ${data.cb_customHeight || ''}\n`;
+                }
+                if (data.cb_materialType) summary += `Material Type: ${data.cb_materialType}\n`;
+                if (data.cb_installationMethod) summary += `Installation Method: ${data.cb_installationMethod}\n`;
+                if (data.cb_usageEnvironment) summary += `Usage Environment: ${data.cb_usageEnvironment}\n`;
+                if (data.cb_designDetails) summary += `Design/Layout Details: ${data.cb_designDetails}\n`;
+                
+                return summary + '\n';
+            }
+
+            generateCustomSpecialProductsSummary(data) {
+                return '**CUSTOM SPECIAL PRODUCTS DETAILS:**\n(Implementation pending)\n\n';
+            }
+
+            generateNewTemplateRequestSummary(data) {
+                return '**NEW TEMPLATE REQUEST DETAILS:**\n(Implementation pending)\n\n';
+            }
+
+            generateBusinessCardsSummary(data) {
+                return '**BUSINESS CARDS DETAILS:**\n(Implementation pending)\n\n';
             }
 
             copyToClipboard() {
                 const outputText = document.getElementById('outputText');
-                const copyButton = document.getElementById('copyButton');
-                
                 outputText.select();
-                document.execCommand('copy');
+                outputText.setSelectionRange(0, 99999);
                 
-                // Visual feedback
-                copyButton.textContent = 'COPIED!';
-                copyButton.classList.add('copied');
-                
-                setTimeout(() => {
-                    copyButton.textContent = 'Copy to Clipboard';
-                    copyButton.classList.remove('copied');
-                }, 2000);
+                try {
+                    document.execCommand('copy');
+                    
+                    const button = document.getElementById('copyButton');
+                    const originalText = button.textContent;
+                    button.textContent = 'Copied!';
+                    button.style.backgroundColor = '#4CAF50';
+                    
+                    setTimeout(() => {
+                        button.textContent = originalText;
+                        button.style.backgroundColor = '#333';
+                    }, 2000);
+                } catch (err) {
+                    console.error('Failed to copy text: ', err);
+                }
             }
         }
 
-        // Initialize the form when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', () => {
             new OrderFormEngine();
         });
     </script>
