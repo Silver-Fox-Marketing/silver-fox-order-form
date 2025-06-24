@@ -257,6 +257,11 @@
     <div class="container">
         <div class="header">
             <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                <!-- COMPANY LOGO: Replace the URL below with your company logo URL -->
+                <div id="logoContainer" style="display: none;">
+                    <img id="companyLogo" src="https://lirp.cdn-website.com/c23d840a/dms3rep/multi/opt/SF-LOGO-HORIZ-BLACK-604w.png" alt="Company Logo" style="max-height: 60px; max-width: 200px; object-fit: contain;">
+                </div>
+                <!-- END LOGO SECTION -->
                 <div style="text-align: center;">
                     <h1>Silver Fox Marketing STL</h1>
                     <p>Internal Order Processing Tool</p>
@@ -286,21 +291,6 @@
 
                     <!-- Conditional Fields Container -->
                     <div id="conditionalFieldsContainer"></div>
-
-                    <!-- Additional Information -->
-                    <fieldset class="field-section">
-                        <legend>Additional Information</legend>
-                        
-                        <div class="form-group">
-                            <label for="specialInstructions">Special Instructions/Notes</label>
-                            <textarea id="specialInstructions" name="specialInstructions" placeholder="Any additional notes, special requirements, or instructions..."></textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="poNumber">PO Number (if applicable)</label>
-                            <input type="text" id="poNumber" name="poNumber" placeholder="Purchase Order Number">
-                        </div>
-                    </fieldset>
                 </form>
             </div>
 
@@ -324,12 +314,18 @@
     </div>
 
     <script>
+        // TO ADD YOUR COMPANY LOGO: Replace "YOUR_LOGO_URL_HERE" with your actual logo URL
+        const COMPANY_LOGO_URL = "YOUR_LOGO_URL_HERE"; // <-- CHANGE THIS TO YOUR LOGO URL
+
         class OrderFormEngine {
             constructor() {
                 this.init();
             }
 
             init() {
+                // Initialize logo if URL is provided
+                this.initializeLogo();
+
                 document.getElementById('orderType').addEventListener('change', (e) => {
                     this.handleOrderTypeChange(e.target.value);
                 });
@@ -348,6 +344,16 @@
                 });
 
                 this.generateOrderSummary();
+            }
+
+            initializeLogo() {
+                if (COMPANY_LOGO_URL && COMPANY_LOGO_URL !== "YOUR_LOGO_URL_HERE") {
+                    const logoContainer = document.getElementById('logoContainer');
+                    const companyLogo = document.getElementById('companyLogo');
+                    
+                    companyLogo.src = COMPANY_LOGO_URL;
+                    logoContainer.style.display = 'block';
+                }
             }
 
             handleOrderTypeChange(orderType) {
@@ -711,7 +717,6 @@
                         <textarea id="dm_pb_designDetails" name="dm_pb_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..."></textarea>
                     </div>
 
-                    <div class="form-group">
                     <div class="form-group">
                         <label for="dm_pb_artworkUpload">Art Work Upload</label>
                         <input type="text" id="dm_pb_artworkUpload" name="dm_pb_artworkUpload" placeholder="Describe artwork or provide file reference...">
@@ -1277,71 +1282,6 @@
 
                     // Order-specific details
                     switch (orderType) {
-                        case 'Dealership Merchandising':
-                            const dmQuotedPrice = formData.get('dm_quotedPrice');
-                            const dmInstallLocation = formData.get('dm_installLocation');
-                            const dmProductType = formData.get('dm_productType');
-                            
-                            if (dmQuotedPrice) summary += `**Quoted Price:** ${dmQuotedPrice}\n`;
-                            if (dmInstallLocation) summary += `**Install Location:** ${dmInstallLocation}\n`;
-                            if (dmProductType) {
-                                summary += `**Product Type:** ${dmProductType}\n`;
-                                
-                                switch (dmProductType) {
-                                    case 'Custom Designed Pole Banners':
-                                        const pbMaterial = formData.get('dm_pb_materialType');
-                                        const pbDimensions = formData.get('dm_pb_dimensions');
-                                        const pbText = formData.get('dm_pb_text');
-                                        const pbDesign = formData.get('dm_pb_designDetails');
-                                        const pbArtwork = formData.get('dm_pb_artworkUpload');
-                                        
-                                        if (pbMaterial) summary += `**Material:** ${pbMaterial}\n`;
-                                        if (pbDimensions) summary += `**Dimensions:** ${pbDimensions}\n`;
-                                        if (pbText) summary += `**Text:** ${pbText}\n`;
-                                        if (pbDesign) summary += `**Design Details:** ${pbDesign}\n`;
-                                        if (pbArtwork) summary += `**Artwork:** ${pbArtwork}\n`;
-                                        break;
-                                        
-                                    case 'Custom Designed Interior Showroom Graphics':
-                                        const isgSurface = formData.get('dm_isg_surfaceType');
-                                        const isgMaterial = formData.get('dm_isg_materialType');
-                                        const isgMaxWidth = formData.get('dm_isg_maxWidth');
-                                        const isgMaxHeight = formData.get('dm_isg_maxHeight');
-                                        const isgWidth = formData.get('dm_isg_graphicWidth');
-                                        const isgHeight = formData.get('dm_isg_graphicHeight');
-                                        const isgText = formData.get('dm_isg_text');
-                                        const isgDesign = formData.get('dm_isg_designDetails');
-                                        
-                                        if (isgSurface) summary += `**Surface Type:** ${isgSurface}\n`;
-                                        if (isgMaterial) summary += `**Material:** ${isgMaterial}\n`;
-                                        if (isgMaxWidth) summary += `**Max Width:** ${isgMaxWidth}\n`;
-                                        if (isgMaxHeight) summary += `**Max Height:** ${isgMaxHeight}\n`;
-                                        if (isgWidth) summary += `**Graphic Width:** ${isgWidth}\n`;
-                                        if (isgHeight) summary += `**Graphic Height:** ${isgHeight}\n`;
-                                        if (isgText) summary += `**Text:** ${isgText}\n`;
-                                        if (isgDesign) summary += `**Design Details:** ${isgDesign}\n`;
-                                        break;
-                                        
-                                    case 'Custom Designed Showroom Graphics':
-                                        const sgMaterial = formData.get('dm_sg_materialType');
-                                        const sgLamination = formData.get('dm_sg_addLamination');
-                                        const sgWindowType = formData.get('dm_sg_windowType');
-                                        const sgSize = formData.get('dm_sg_sizeDetails');
-                                        const sgText = formData.get('dm_sg_text');
-                                        const sgDesign = formData.get('dm_sg_designDetails');
-                                        
-                                        if (sgMaterial) summary += `**Material:** ${sgMaterial}\n`;
-                                        if (sgLamination) summary += `**Add Lamination:** ${sgLamination}\n`;
-                                        if (sgWindowType) summary += `**Window Type:** ${sgWindowType}\n`;
-                                        if (sgSize) summary += `**Size Details:** ${sgSize}\n`;
-                                        if (sgText) summary += `**Text:** ${sgText}\n`;
-                                        if (sgDesign) summary += `**Design Details:** ${sgDesign}\n`;
-                                        break;
-                                }
-                                summary += '\n';
-                            }
-                            break;
-
                         case 'Vehicle Merchandising':
                             const vmProductType = formData.get('vm_productType');
                             if (vmProductType) {
@@ -1408,6 +1348,96 @@
                             }
                             break;
 
+                        case 'Dealership Merchandising':
+                            const dmQuotedPrice = formData.get('dm_quotedPrice');
+                            const dmInstallLocation = formData.get('dm_installLocation');
+                            const dmProductType = formData.get('dm_productType');
+                            
+                            if (dmQuotedPrice) summary += `**Quoted Price:** ${dmQuotedPrice}\n`;
+                            if (dmInstallLocation) summary += `**Install Location:** ${dmInstallLocation}\n`;
+                            if (dmProductType) {
+                                summary += `**Product Type:** ${dmProductType}\n`;
+                                
+                                switch (dmProductType) {
+                                    case 'Custom Designed Pole Banners':
+                                        const pbMaterial = formData.get('dm_pb_materialType');
+                                        const pbDimensions = formData.get('dm_pb_dimensions');
+                                        const pbText = formData.get('dm_pb_text');
+                                        const pbDesign = formData.get('dm_pb_designDetails');
+                                        const pbArtwork = formData.get('dm_pb_artworkUpload');
+                                        
+                                        if (pbMaterial) summary += `**Material:** ${pbMaterial}\n`;
+                                        if (pbDimensions) summary += `**Dimensions:** ${pbDimensions}\n`;
+                                        if (pbText) summary += `**Text:** ${pbText}\n`;
+                                        if (pbDesign) summary += `**Design Details:** ${pbDesign}\n`;
+                                        if (pbArtwork) summary += `**Artwork:** ${pbArtwork}\n`;
+                                        break;
+                                        
+                                    case 'Custom Designed Interior Showroom Graphics':
+                                        const isgSurface = formData.get('dm_isg_surfaceType');
+                                        const isgMaterial = formData.get('dm_isg_materialType');
+                                        const isgMaxWidth = formData.get('dm_isg_maxWidth');
+                                        const isgMaxHeight = formData.get('dm_isg_maxHeight');
+                                        const isgWidth = formData.get('dm_isg_graphicWidth');
+                                        const isgHeight = formData.get('dm_isg_graphicHeight');
+                                        const isgText = formData.get('dm_isg_text');
+                                        const isgDesign = formData.get('dm_isg_designDetails');
+                                        
+                                        if (isgSurface) summary += `**Surface Type:** ${isgSurface}\n`;
+                                        if (isgMaterial) summary += `**Material:** ${isgMaterial}\n`;
+                                        if (isgMaxWidth) summary += `**Max Width:** ${isgMaxWidth}\n`;
+                                        if (isgMaxHeight) summary += `**Max Height:** ${isgMaxHeight}\n`;
+                                        if (isgWidth) summary += `**Graphic Width:** ${isgWidth}\n`;
+                                        if (isgHeight) summary += `**Graphic Height:** ${isgHeight}\n`;
+                                        if (isgText) summary += `**Text:** ${isgText}\n`;
+                                        if (isgDesign) summary += `**Design Details:** ${isgDesign}\n`;
+                                        break;
+                                        
+                                    case 'Custom Designed Showroom Graphics':
+                                        const sgMaterial = formData.get('dm_sg_materialType');
+                                        const sgLamination = formData.get('dm_sg_addLamination');
+                                        const sgWindowType = formData.get('dm_sg_windowType');
+                                        const sgSize = formData.get('dm_sg_sizeDetails');
+                                        const sgText = formData.get('dm_sg_text');
+                                        const sgDesign = formData.get('dm_sg_designDetails');
+                                        
+                                        if (sgMaterial) summary += `**Material:** ${sgMaterial}\n`;
+                                        if (sgLamination) summary += `**Add Lamination:** ${sgLamination}\n`;
+                                        if (sgWindowType) summary += `**Window Type:** ${sgWindowType}\n`;
+                                        if (sgSize) summary += `**Size Details:** ${sgSize}\n`;
+                                        if (sgText) summary += `**Text:** ${sgText}\n`;
+                                        if (sgDesign) summary += `**Design Details:** ${sgDesign}\n`;
+                                        break;
+                                }
+                                summary += '\n';
+                            }
+                            break;
+
+                        case 'Custom Special Products':
+                            const cspQuotedPrice = formData.get('csp_quotedPrice');
+                            const cspInstallLocation = formData.get('csp_installLocation');
+                            const cspProductType = formData.get('csp_productType');
+                            const cspMaterialType = formData.get('csp_materialType');
+                            const cspOtherMaterial = formData.get('csp_otherMaterial');
+                            const cspSizeDetails = formData.get('csp_sizeDetails');
+                            const cspText = formData.get('csp_text');
+                            const cspDesignNotes = formData.get('csp_designNotes');
+                            
+                            if (cspQuotedPrice) summary += `**Quoted Price:** ${cspQuotedPrice}\n`;
+                            if (cspInstallLocation) summary += `**Install Location:** ${cspInstallLocation}\n`;
+                            if (cspProductType) summary += `**Product Type:** ${cspProductType}\n`;
+                            if (cspMaterialType) {
+                                summary += `**Material Type:** ${cspMaterialType}\n`;
+                                if (cspMaterialType === 'Other' && cspOtherMaterial) {
+                                    summary += `**Other Material:** ${cspOtherMaterial}\n`;
+                                }
+                            }
+                            if (cspSizeDetails) summary += `**Size Details:** ${cspSizeDetails}\n`;
+                            if (cspText) summary += `**Text:** ${cspText}\n`;
+                            if (cspDesignNotes) summary += `**Design Notes:** ${cspDesignNotes}\n`;
+                            summary += '\n';
+                            break;
+
                         case 'New Template Request':
                             const ntrQuotedPrice = formData.get('ntr_quotedPrice');
                             const ntrRequestType = formData.get('ntr_requestType');
@@ -1462,42 +1492,22 @@
                                 summary += '\n';
                             }
                             break;
-                        
-                        case 'Custom Special Products':
-                            const cspQuotedPrice = formData.get('csp_quotedPrice');
-                            const cspInstallLocation = formData.get('csp_installLocation');
-                            const cspProductType = formData.get('csp_productType');
-                            const cspMaterialType = formData.get('csp_materialType');
-                            const cspOtherMaterial = formData.get('csp_otherMaterial');
-                            const cspSizeDetails = formData.get('csp_sizeDetails');
-                            const cspText = formData.get('csp_text');
-                            const cspDesignNotes = formData.get('csp_designNotes');
+
+                        case 'Business Cards':
+                            const bcQuotedPrice = formData.get('bc_quotedPrice');
+                            const bcSingleOrDouble = formData.get('bc_singleOrDouble');
+                            const bcQuantity = formData.get('bc_quantity');
+                            const bcText = formData.get('bc_text');
+                            const bcDescription = formData.get('bc_description');
                             
-                            if (cspQuotedPrice) summary += `**Quoted Price:** ${cspQuotedPrice}\n`;
-                            if (cspInstallLocation) summary += `**Install Location:** ${cspInstallLocation}\n`;
-                            if (cspProductType) summary += `**Product Type:** ${cspProductType}\n`;
-                            if (cspMaterialType) {
-                                summary += `**Material Type:** ${cspMaterialType}\n`;
-                                if (cspMaterialType === 'Other' && cspOtherMaterial) {
-                                    summary += `**Other Material:** ${cspOtherMaterial}\n`;
-                                }
-                            }
-                            if (cspSizeDetails) summary += `**Size Details:** ${cspSizeDetails}\n`;
-                            if (cspText) summary += `**Text:** ${cspText}\n`;
-                            if (cspDesignNotes) summary += `**Design Notes:** ${cspDesignNotes}\n`;
+                            if (bcQuotedPrice) summary += `**Quoted Price:** ${bcQuotedPrice}\n`;
+                            if (bcSingleOrDouble) summary += `**Single or Double Sided:** ${bcSingleOrDouble}\n`;
+                            if (bcQuantity) summary += `**Quantity:** ${bcQuantity}\n`;
+                            if (bcText) summary += `**Text:** ${bcText}\n`;
+                            if (bcDescription) summary += `**Description:** ${bcDescription}\n`;
                             summary += '\n';
                             break;
                     }
-                }
-
-                // Additional Information
-                const specialInstructions = formData.get('specialInstructions');
-                const poNumber = formData.get('poNumber');
-
-                if (specialInstructions || poNumber) {
-                    summary += '**ADDITIONAL INFORMATION:**\n';
-                    if (specialInstructions) summary += `**Special Instructions:** ${specialInstructions}\n`;
-                    if (poNumber) summary += `**PO Number:** ${poNumber}\n`;
                 }
 
                 summary += '\n---\n*Generated by Silver Fox Marketing Order Form Tool*';
