@@ -441,17 +441,121 @@
                             <option value="Specially Sized Graphics">Specially Sized Graphics</option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label for="vehicleSpecifications">Specifications</label>
-                        <textarea id="vehicleSpecifications" name="vehicleSpecifications" placeholder="Describe specific requirements, sizes, placement, etc."></textarea>
-                    </div>
+                    <div id="vehicleNestedFields"></div>
                 `;
 
                 container.appendChild(section);
                 this.animateIn(section);
 
+                // Set up nested conditional logic
+                document.getElementById('vehicleProductType').addEventListener('change', (e) => {
+                    this.handleVehicleProductTypeChange(e.target.value);
+                });
+
                 // Add Material & Production Details
                 this.addMaterialProductionDetails(container);
+            }
+
+            handleVehicleProductTypeChange(productType) {
+                const container = document.getElementById('vehicleNestedFields');
+                container.innerHTML = '';
+
+                if (!productType) {
+                    this.generateOrderSummary();
+                    return;
+                }
+
+                switch (productType) {
+                    case 'Windshield Banners':
+                        this.showWindshieldBannersFields(container);
+                        break;
+                    case 'Side Banners':
+                        // TODO: Implement next
+                        break;
+                    case 'Complement Graphics':
+                        // TODO: Implement next
+                        break;
+                    case 'Specially Sized Graphics':
+                        // TODO: Implement next
+                        break;
+                }
+
+                this.generateOrderSummary();
+            }
+
+            showWindshieldBannersFields(container) {
+                const nestedSection = this.createNestedSection('Windshield Banners Specifications');
+                
+                nestedSection.innerHTML = `
+                    <div class="form-group">
+                        <label for="windshieldProductSize">Product Size</label>
+                        <select id="windshieldProductSize" name="windshieldProductSize">
+                            <option value="">Select</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="windshieldMaterialType">Material Type</label>
+                        <select id="windshieldMaterialType" name="windshieldMaterialType">
+                            <option value="">Select</option>
+                            <option value="Winter Vinyl">Winter Vinyl</option>
+                            <option value="Summer Vinyl">Summer Vinyl</option>
+                            <option value="Perforated Vinyl">Perforated Vinyl</option>
+                            <option value="Poly Vinyl">Poly Vinyl</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="windshieldDesignDetails">Design/Layout Details</label>
+                        <textarea id="windshieldDesignDetails" name="windshieldDesignDetails" placeholder="Describe the design requirements, layout, colors, text, etc."></textarea>
+                    </div>
+                `;
+
+                container.appendChild(nestedSection);
+                this.animateNestedIn(nestedSection);
+            }
+
+            createNestedSection(title) {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                
+                const header = document.createElement('h4');
+                header.textContent = title;
+                header.style.cssText = `
+                    color: white;
+                    margin-bottom: 20px;
+                    padding-bottom: 10px;
+                    border-bottom: 2px solid #555;
+                    font-size: 1.1rem;
+                `;
+                
+                section.appendChild(header);
+                return section;
+            }
+
+            animateNestedIn(element) {
+                element.style.cssText += `
+                    opacity: 0;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: all 0.4s ease;
+                    margin-top: 20px;
+                    padding: 20px;
+                    background: rgba(255,255,255,0.1);
+                    border-radius: 6px;
+                    border: 1px solid #555;
+                `;
+                
+                // Force reflow
+                element.offsetHeight;
+                
+                setTimeout(() => {
+                    element.style.opacity = '1';
+                    element.style.maxHeight = '1000px';
+                }, 50);
             }
 
             showDealershipMerchandisingFields(container) {
