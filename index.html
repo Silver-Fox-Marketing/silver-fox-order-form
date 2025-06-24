@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silver Fox Marketing STL - Order Form Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Verdana, Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #000;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .form-section {
+            padding: 30px;
+            background-color: white;
+            border-right: 2px solid #333;
+        }
+
+        .output-section {
+            padding: 30px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-header {
+            margin-bottom: 20px;
+        }
+
+        .output-header h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .output-header p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .output-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .output-text {
+            flex: 1;
+            width: 100%;
+            min-height: 400px;
+            padding: 15px;
+            border: 2px solid #333;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.4;
+            background-color: white;
+            resize: none;
+            margin-bottom: 15px;
+        }
+
+        .copy-button {
+            background-color: #333;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: Verdana, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .copy-button:hover {
+            background-color: #555;
+        }
+
+        .field-section {
+            border: 2px solid #333;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: white;
+        }
+
+        .field-section legend {
+            background-color: #333;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .conditional-section {
+            border: 2px solid #000;
+            border-radius: 4px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #000;
+            color: white;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .conditional-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .conditional-section legend {
+            background-color: #333;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .nested-conditional-fields {
+            border: 2px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            margin-top: 15px;
+            background-color: #333;
+            color: white;
+            opacity: 0;
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .nested-conditional-fields.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: Verdana, Arial, sans-serif;
+            background-color: white;
+            color: #333;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .required {
+            color: #ff4444;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: auto;
+        }
+
+        small {
+            color: #ffd700;
+            font-style: italic;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-section {
+                border-right: none;
+                border-bottom: 2px solid #333;
+            }
+            
+            .container {
+                margin: 15px;
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .output-text {
+                min-height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
+                <div style="text-align: center;">
+                    <h1>Silver Fox Marketing STL</h1>
+                    <p>Internal Order Processing Tool</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="form-section">
+                <form id="orderForm">
+                    <!-- Basic Order Information -->
+                    <fieldset class="field-section">
+                        <legend>Basic Order Information</legend>
+                        
+                        <div class="form-group">
+                            <label for="orderType">Order Type <span class="required">*</span></label>
+                            <select id="orderType" name="orderType" required>
+                                <option value="">Please Select:</option>
+                                <option value="Vehicle Merchandising">Vehicle Merchandising</option>
+                                <option value="Dealership Merchandising">Dealership Merchandising</option>
+                                <option value="Custom Special Products">Custom Special Products</option>
+                                <option value="New Template Request">New Template Request</option>
+                                <option value="Business Cards">Business Cards</option>
+                            </select>
+                        </div>
+                    </fieldset>
+
+                    <!-- Conditional Fields Container -->
+                    <div id="conditionalFieldsContainer"></div>
+
+                    <!-- Additional Information -->
+                    <fieldset class="field-section">
+                        <legend>Additional Information</legend>
+                        
+                        <div class="form-group">
+                            <label for="specialInstructions">Special Instructions/Notes</label>
+                            <textarea id="specialInstructions" name="specialInstructions" placeholder="Any additional notes, special requirements, or instructions..."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="poNumber">PO Number (if applicable)</label>
+                            <input type="text" id="poNumber" name="poNumber" placeholder="Purchase Order Number">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="output-section">
+                <div class="output-header">
+                    <h3>Order Summary</h3>
+                    <p>Formatted for PipeDrive CRM - Dynamic Content Panel</p>
+                </div>
+                
+                <div class="output-container">
+                    <textarea id="outputText" class="output-text" readonly placeholder="Select an order type to begin generating your order summary..."></textarea>
+                    
+                    <button id="copyButton" class="copy-button">Copy to Clipboard</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2025 Silver Fox Marketing STL - Internal Order Processing Tool</p>
+        </div>
+    </div>
+
+    <script>
+        class OrderFormEngine {
+            constructor() {
+                this.init();
+            }
+
+            init() {
+                document.getElementById('orderType').addEventListener('change', (e) => {
+                    this.handleOrderTypeChange(e.target.value);
+                });
+
+                document.getElementById('copyButton').addEventListener('click', () => {
+                    this.copyToClipboard();
+                });
+
+                const form = document.getElementById('orderForm');
+                form.addEventListener('input', () => {
+                    this.generateOrderSummary();
+                });
+
+                form.addEventListener('change', () => {
+                    this.generateOrderSummary();
+                });
+
+                this.generateOrderSummary();
+            }
+
+            handleOrderTypeChange(orderType) {
+                const container = document.getElementById('conditionalFieldsContainer');
+                container.innerHTML = '';
+
+                if (!orderType) {
+                    this.generateOrderSummary();
+                    return;
+                }
+
+                this.createOrderTypeSection(container, orderType);
+                this.generateOrderSummary();
+            }
+
+            createOrderTypeSection(container, orderType) {
+                switch (orderType) {
+                    case 'Vehicle Merchandising':
+                        this.createVehicleMerchandisingSection(container);
+                        break;
+                    case 'Dealership Merchandising':
+                        this.createDealershipMerchandisingSection(container);
+                        break;
+                    case 'Custom Special Products':
+                        this.createCustomSpecialProductsSection(container);
+                        break;
+                    case 'New Template Request':
+                        this.createNewTemplateRequestSection(container);
+                        break;
+                    case 'Business Cards':
+                        this.createBusinessCardsSection(container);
+                        break;
+                }
+            }
+
+            createVehicleMerchandisingSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>Vehicle Merchandising Details</legend>
+                    
+                    <div class="form-group">
+                        <label for="vm_productType">Product Type <span class="required">*</span></label>
+                        <select id="vm_productType" name="vm_productType" required>
+                            <option value="">Please Select:</option>
+                            <option value="Windshield Banners">Windshield Banners</option>
+                            <option value="Side Banners">Side Banners</option>
+                            <option value="Complement Graphics">Complement Graphics</option>
+                            <option value="Specially Sized Graphics">Specially Sized Graphics</option>
+                        </select>
+                    </div>
+
+                    <div id="vm_nestedFields"></div>
+                `;
+                
+                container.appendChild(section);
+                this.animateIn(section);
+
+                document.getElementById('vm_productType').addEventListener('change', (e) => {
+                    this.handleVehicleMerchandisingProductType(e.target.value);
+                });
+            }
+
+            handleVehicleMerchandisingProductType(productType) {
+                const container = document.getElementById('vm_nestedFields');
+                container.innerHTML = '';
+
+                if (!productType) return;
+
+                let nestedSection;
+
+                switch (productType) {
+                    case 'Windshield Banners':
+                        nestedSection = this.createWindshieldBannersFields();
+                        break;
+                    case 'Side Banners':
+                        nestedSection = this.createSideBannersFields();
+                        break;
+                    case 'Complement Graphics':
+                        nestedSection = this.createComplementGraphicsFields();
+                        break;
+                    case 'Specially Sized Graphics':
+                        nestedSection = this.createSpeciallySizedGraphicsFields();
+                        break;
+                }
+
+                if (nestedSection) {
+                    container.appendChild(nestedSection);
+                    this.animateNestedIn(nestedSection);
+                }
+            }
+
+            createWindshieldBannersFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="vm_wb_productSize">Product Size <span class="required">*</span></label>
+                        <select id="vm_wb_productSize" name="vm_wb_productSize" required>
+                            <option value="">Please Select:</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_wb_materialType">Material Type <span class="required">*</span></label>
+                        <select id="vm_wb_materialType" name="vm_wb_materialType" required>
+                            <option value="">Please Select:</option>
+                            <option value="Winter Vinyl">Winter Vinyl</option>
+                            <option value="Summer Vinyl">Summer Vinyl</option>
+                            <option value="Perforated Vinyl">Perforated Vinyl</option>
+                            <option value="Poly Vinyl">Poly Vinyl</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_wb_text">Text <span class="required">*</span></label>
+                        <textarea id="vm_wb_text" name="vm_wb_text" required placeholder="Enter banner text..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_wb_designDetails">Design/Layout Details</label>
+                        <textarea id="vm_wb_designDetails" name="vm_wb_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_wb_artworkUpload">Art Work Upload</label>
+                        <input type="text" id="vm_wb_artworkUpload" name="vm_wb_artworkUpload" placeholder="Describe artwork or provide file reference...">
+                    </div>
+                `;
+                return section;
+            }
+
+            createSideBannersFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="vm_sb_productSize">Product Size <span class="required">*</span></label>
+                        <select id="vm_sb_productSize" name="vm_sb_productSize" required>
+                            <option value="">Please Select:</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                            <option value="X-Large">X-Large</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_sb_materialType">Material Type <span class="required">*</span></label>
+                        <select id="vm_sb_materialType" name="vm_sb_materialType" required>
+                            <option value="">Please Select:</option>
+                            <option value="Winter Vinyl">Winter Vinyl</option>
+                            <option value="Summer Vinyl">Summer Vinyl</option>
+                            <option value="Perforated Vinyl">Perforated Vinyl</option>
+                            <option value="Poly Vinyl">Poly Vinyl</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_sb_text">Text <span class="required">*</span></label>
+                        <textarea id="vm_sb_text" name="vm_sb_text" required placeholder="Enter banner text..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_sb_designDetails">Design/Layout Details</label>
+                        <textarea id="vm_sb_designDetails" name="vm_sb_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_sb_artworkUpload">Art Work Upload</label>
+                        <input type="text" id="vm_sb_artworkUpload" name="vm_sb_artworkUpload" placeholder="Describe artwork or provide file reference...">
+                    </div>
+                `;
+                return section;
+            }
+
+            createComplementGraphicsFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="vm_cg_productSize">Product Size <span class="required">*</span></label>
+                        <select id="vm_cg_productSize" name="vm_cg_productSize" required>
+                            <option value="">Please Select:</option>
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_cg_materialType">Material Type <span class="required">*</span></label>
+                        <select id="vm_cg_materialType" name="vm_cg_materialType" required>
+                            <option value="">Please Select:</option>
+                            <option value="Vinyl - Standard">Vinyl - Standard</option>
+                            <option value="Vinyl - Premium">Vinyl - Premium</option>
+                            <option value="Vinyl - Reflective">Vinyl - Reflective</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_cg_text">Text</label>
+                        <textarea id="vm_cg_text" name="vm_cg_text" placeholder="Enter any text elements..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_cg_designDetails">Design/Layout Details <span class="required">*</span></label>
+                        <textarea id="vm_cg_designDetails" name="vm_cg_designDetails" required placeholder="Describe graphic design requirements, layout, colors, style preferences..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_cg_artworkUpload">Art Work Upload</label>
+                        <input type="text" id="vm_cg_artworkUpload" name="vm_cg_artworkUpload" placeholder="Describe artwork or provide file reference...">
+                    </div>
+                `;
+                return section;
+            }
+
+            createSpeciallySizedGraphicsFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="vm_ssg_sizeDetails">Size Details <span class="required">*</span></label>
+                        <textarea id="vm_ssg_sizeDetails" name="vm_ssg_sizeDetails" required placeholder="Provide exact dimensions, measurements, and size specifications..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_ssg_materialType">Material Type <span class="required">*</span></label>
+                        <select id="vm_ssg_materialType" name="vm_ssg_materialType" required>
+                            <option value="">Please Select:</option>
+                            <option value="Vinyl - Standard">Vinyl - Standard</option>
+                            <option value="Vinyl - Premium">Vinyl - Premium</option>
+                            <option value="Vinyl - Reflective">Vinyl - Reflective</option>
+                            <option value="Banner Material">Banner Material</option>
+                            <option value="Magnetic Material">Magnetic Material</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_ssg_text">Text</label>
+                        <textarea id="vm_ssg_text" name="vm_ssg_text" placeholder="Enter any text elements..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_ssg_designDetails">Design/Layout Details <span class="required">*</span></label>
+                        <textarea id="vm_ssg_designDetails" name="vm_ssg_designDetails" required placeholder="Describe design requirements, layout preferences, colors, application details..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="vm_ssg_artworkUpload">Art Work Upload</label>
+                        <input type="text" id="vm_ssg_artworkUpload" name="vm_ssg_artworkUpload" placeholder="Describe artwork or provide file reference...">
+                    </div>
+                `;
+                return section;
+            }
+
+            createDealershipMerchandisingSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>Dealership Merchandising Details</legend>
+                    
+                    <div class="form-group">
+                        <label for="dm_quotedPrice">*Quoted Price</label>
+                        <small>(Material + Design Setup + Install)</small>
+                        <input type="text" id="dm_quotedPrice" name="dm_quotedPrice" placeholder="Enter quoted price...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dm_installLocation">Install Location</label>
+                        <small>EX: North Windows, Service Lane, etc. (Indoor/Outdoor - Permanent/Temporary)</small>
+                        <input type="text" id="dm_installLocation" name="dm_installLocation" placeholder="EX: North Windows, Service Lane, etc. (Indoor/Outdoor - Permanent/Temporary)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="dm_productType">Product Type</label>
+                        <select id="dm_productType" name="dm_productType">
+                            <option value="">Please Select:</option>
+                            <option value="Custom Designed Pole Banners">Custom Designed Pole Banners</option>
+                            <option value="Custom Designed Interior Showroom Graphics">Custom Designed Interior Showroom Graphics</option>
+                            <option value="Custom Designed Showroom Graphics">Custom Designed Showroom Graphics</option>
+                        </select>
+                    </div>
+
+                    <div id="dm_nestedFields"></div>
+                `;
+                
+                container.appendChild(section);
+                this.animateIn(section);
+
+                document.getElementById('dm_productType').addEventListener('change', (e) => {
+                    this.handleDealershipMerchandisingProductType(e.target.value);
+                });
+            }
+
+            handleDealershipMerchandisingProductType(productType) {
+                const container = document.getElementById('dm_nestedFields');
+                container.innerHTML = '';
+
+                if (!productType) return;
+
+                let nestedSection;
+
+                switch (productType) {
+                    case 'Custom Designed Pole Banners':
+                        nestedSection = this.createPoleBannersFields();
+                        break;
+                    case 'Custom Designed Interior Showroom Graphics':
+                        nestedSection = this.createInteriorShowroomGraphicsFields();
+                        break;
+                    case 'Custom Designed Showroom Graphics':
+                        nestedSection = this.createShowroomGraphicsFields();
+                        break;
+                }
+
+                if (nestedSection) {
+                    container.appendChild(nestedSection);
+                    this.animateNestedIn(nestedSection);
+                }
+            }
+
+            createPoleBannersFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="dm_pb_materialType">Material Type</label>
+                        <select id="dm_pb_materialType" name="dm_pb_materialType">
+                            <option value="">Please Select:</option>
+                            <option value="Banner Material - 13oz">Banner Material - 13oz</option>
+                            <option value="Banner Material - 18oz">Banner Material - 18oz</option>
+                            <option value="Mesh Banner Material">Mesh Banner Material</option>
+                            <option value="Vinyl Banner">Vinyl Banner</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_pb_dimensions">Dimensions</label>
+                        <input type="text" id="dm_pb_dimensions" name="dm_pb_dimensions" placeholder="e.g., 24&quot; x 36&quot;">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_pb_text">Text</label>
+                        <textarea id="dm_pb_text" name="dm_pb_text" placeholder="Enter banner text..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_pb_designDetails">Design/Layout Details</label>
+                        <textarea id="dm_pb_designDetails" name="dm_pb_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                    <div class="form-group">
+                        <label for="dm_pb_artworkUpload">Art Work Upload</label>
+                        <input type="text" id="dm_pb_artworkUpload" name="dm_pb_artworkUpload" placeholder="Describe artwork or provide file reference...">
+                    </div>
+                `;
+                return section;
+            }
+
+            createInteriorShowroomGraphicsFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="dm_isg_surfaceType">Surface Type</label>
+                        <select id="dm_isg_surfaceType" name="dm_isg_surfaceType">
+                            <option value="">Please Select:</option>
+                            <option value="Painted">Painted</option>
+                            <option value="Concrete">Concrete</option>
+                            <option value="Glass">Glass</option>
+                            <option value="Wood">Wood</option>
+                            <option value="Metal">Metal</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_isg_materialType">Material Type</label>
+                        <select id="dm_isg_materialType" name="dm_isg_materialType">
+                            <option value="">Please Select:</option>
+                            <option value="Premium Indoor Poly Film">Premium Indoor Poly Film</option>
+                            <option value="Premium Perforated Vinyl">Premium Perforated Vinyl</option>
+                            <option value="Premium Cast Wrap Vinyl">Premium Cast Wrap Vinyl</option>
+                            <option value="Premium Calendared Film">Premium Calendared Film</option>
+                            <option value="Premium Contour Cut Vinyl">Premium Contour Cut Vinyl</option>
+                            <option value="Premium Intermediate Contour Cut Vinyl">Premium Intermediate Contour Cut Vinyl</option>
+                            <option value="Concrete/Floor Vinyl">Concrete/Floor Vinyl</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_isg_maxWidth">Max Width</label>
+                        <small>This is the full Width of the space where graphics will be installed.</small>
+                        <input type="text" id="dm_isg_maxWidth" name="dm_isg_maxWidth" placeholder="This is the full Width of the space where graphics will be installed.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_isg_maxHeight">Max Height</label>
+                        <small>This is the full Height of the space where graphics will be installed.</small>
+                        <input type="text" id="dm_isg_maxHeight" name="dm_isg_maxHeight" placeholder="This is the full Height of the space where graphics will be installed.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_isg_graphicWidth">Graphic Width</label>
+                        <small>This is the Desired Final Width of the graphics. (Type "TBD" if Production should specify graphic size)</small>
+                        <input type="text" id="dm_isg_graphicWidth" name="dm_isg_graphicWidth" placeholder="This is the Desired Final Width of the graphics. (Type 'TBD' if Production should specify graphic size)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_isg_graphicHeight">Graphic Height</label>
+                        <small>This is the desired Final Height of the graphics. (Type "TBD" if Production should specify graphic size)</small>
+                        <input type="text" id="dm_isg_graphicHeight" name="dm_isg_graphicHeight" placeholder="This is the desired Final Height of the graphics. (Type 'TBD' if Production should specify graphic size)">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_isg_text">Text</label>
+                        <textarea id="dm_isg_text" name="dm_isg_text" placeholder="Enter any text elements..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_isg_designDetails">Design/Layout Details</label>
+                        <textarea id="dm_isg_designDetails" name="dm_isg_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..."></textarea>
+                    </div>
+                `;
+                return section;
+            }
+
+            createShowroomGraphicsFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="dm_sg_materialType">Material Type</label>
+                        <select id="dm_sg_materialType" name="dm_sg_materialType">
+                            <option value="">Please Select:</option>
+                            <option value="Premium Solid Window Film">Premium Solid Window Film</option>
+                            <option value="Premium Perforated Window Film">Premium Perforated Window Film</option>
+                            <option value="Premium Perforated Window Mesh">Premium Perforated Window Mesh</option>
+                            <option value="Premium Contour Cut Graphic Film">Premium Contour Cut Graphic Film</option>
+                            <option value="Premium Frosted Window Film">Premium Frosted Window Film</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_sg_addLamination">Add Lamination</label>
+                        <div style="margin-top: 5px;">
+                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
+                                <input type="radio" id="dm_sg_lamination_yes" name="dm_sg_addLamination" value="Yes" style="margin-right: 5px; width: auto;">
+                                Yes
+                            </label>
+                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
+                                <input type="radio" id="dm_sg_lamination_no" name="dm_sg_addLamination" value="No" style="margin-right: 5px; width: auto;">
+                                No
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_sg_windowType">Window Type</label>
+                        <select id="dm_sg_windowType" name="dm_sg_windowType">
+                            <option value="">Please Select:</option>
+                            <option value="Single Panel">Single Panel</option>
+                            <option value="Multi Panel">Multi Panel</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_sg_sizeDetails">Size Details</label>
+                        <small>Enter Width and Height of each window (Ex. 1=24" 2=25" 3=24" etc.)</small>
+                        <textarea id="dm_sg_sizeDetails" name="dm_sg_sizeDetails" placeholder="Enter Width and Height of each window (Ex. 1=24&quot; 2=25&quot; 3=24&quot; etc.)"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_sg_text">Text</label>
+                        <textarea id="dm_sg_text" name="dm_sg_text" placeholder="Enter any text elements..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="dm_sg_designDetails">Design/Layout Details</label>
+                        <textarea id="dm_sg_designDetails" name="dm_sg_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..."></textarea>
+                    </div>
+                `;
+                return section;
+            }
+
+            createCustomSpecialProductsSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>Custom Special Products Details</legend>
+                    
+                    <div class="form-group">
+                        <label for="csp_quotedPrice">*Quoted Price</label>
+                        <small>(Material + Design Setup + Install)</small>
+                        <input type="text" id="csp_quotedPrice" name="csp_quotedPrice" placeholder="Enter quoted price...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="csp_installLocation">Install Location</label>
+                        <small>EX: North Windows, Service Lane, etc. (Indoor/Outdoor - Permanent/Temporary)</small>
+                        <input type="text" id="csp_installLocation" name="csp_installLocation" placeholder="EX: North Windows, Service Lane, etc. (Indoor/Outdoor - Permanent/Temporary)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="csp_productType">Product Type</label>
+                        <input type="text" id="csp_productType" name="csp_productType" placeholder="Enter product type...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="csp_materialType">Material Type</label>
+                        <select id="csp_materialType" name="csp_materialType">
+                            <option value="">Please Select:</option>
+                            <option value="Winter Vinyl">Winter Vinyl</option>
+                            <option value="Summer Vinyl">Summer Vinyl</option>
+                            <option value="Economy Vinyl">Economy Vinyl</option>
+                            <option value="Perf Vinyl">Perf Vinyl</option>
+                            <option value="Poly-Vinyl">Poly-Vinyl</option>
+                            <option value="13oz. Banner">13oz. Banner</option>
+                            <option value="18oz. Banner">18oz. Banner</option>
+                            <option value="Mesh Banner">Mesh Banner</option>
+                            <option value="Poster Paper">Poster Paper</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div id="csp_otherMaterialField" style="display: none;">
+                        <div class="form-group">
+                            <label for="csp_otherMaterial">Other Material</label>
+                            <small>Please specify what material you are ordering</small>
+                            <input type="text" id="csp_otherMaterial" name="csp_otherMaterial" placeholder="Please specify what material you are ordering">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="csp_sizeDetails">Size Details</label>
+                        <textarea id="csp_sizeDetails" name="csp_sizeDetails" placeholder="Enter size details..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="csp_text">Text</label>
+                        <textarea id="csp_text" name="csp_text" placeholder="Enter text content..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="csp_designNotes">Design Notes</label>
+                        <textarea id="csp_designNotes" name="csp_designNotes" placeholder="Enter design notes..."></textarea>
+                    </div>
+                `;
+                
+                container.appendChild(section);
+                this.animateIn(section);
+
+                // Add conditional logic for "Other" material type
+                document.getElementById('csp_materialType').addEventListener('change', (e) => {
+                    const otherField = document.getElementById('csp_otherMaterialField');
+                    if (e.target.value === 'Other') {
+                        otherField.style.display = 'block';
+                    } else {
+                        otherField.style.display = 'none';
+                        // Clear the other material field when hidden
+                        document.getElementById('csp_otherMaterial').value = '';
+                    }
+                });
+            }
+
+            createNewTemplateRequestSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>New Template Request Details</legend>
+                    
+                    <div class="form-group">
+                        <label for="ntr_quotedPrice">*Quoted Price</label>
+                        <small>(Material + Design Setup + Install)</small>
+                        <input type="text" id="ntr_quotedPrice" name="ntr_quotedPrice" placeholder="Enter quoted price...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ntr_requestType">Request Type</label>
+                        <select id="ntr_requestType" name="ntr_requestType">
+                            <option value="">Please Select:</option>
+                            <option value="New Standard Graphic">New Standard Graphic</option>
+                            <option value="ShortCut Template">ShortCut Template</option>
+                            <option value="Flyout Template">Flyout Template</option>
+                        </select>
+                    </div>
+
+                    <div id="ntr_nestedFields"></div>
+                `;
+                
+                container.appendChild(section);
+                this.animateIn(section);
+
+                document.getElementById('ntr_requestType').addEventListener('change', (e) => {
+                    this.handleNewTemplateRequestType(e.target.value);
+                });
+            }
+
+            handleNewTemplateRequestType(requestType) {
+                const container = document.getElementById('ntr_nestedFields');
+                container.innerHTML = '';
+
+                if (!requestType) return;
+
+                let nestedSection;
+
+                switch (requestType) {
+                    case 'New Standard Graphic':
+                        nestedSection = this.createNewStandardGraphicFields();
+                        break;
+                    case 'ShortCut Template':
+                        nestedSection = this.createShortCutTemplateFields();
+                        break;
+                    case 'Flyout Template':
+                        nestedSection = this.createFlyoutTemplateFields();
+                        break;
+                }
+
+                if (nestedSection) {
+                    container.appendChild(nestedSection);
+                    this.animateNestedIn(nestedSection);
+                }
+            }
+
+            createNewStandardGraphicFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="ntr_nsg_templateName">New Template Name</label>
+                        <input type="text" id="ntr_nsg_templateName" name="ntr_nsg_templateName" placeholder="Enter template name...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_nsg_details">Details</label>
+                        <small>Color Schemes, References to Design Styles, Anything else we need to know</small>
+                        <textarea id="ntr_nsg_details" name="ntr_nsg_details" placeholder="Color Schemes, References to Design Styles, Anything else we need to know"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_nsg_hasArtwork">Do you have a artwork? (Select One)</label>
+                        <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
+                        <div style="margin-top: 5px;">
+                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
+                                <input type="radio" id="ntr_nsg_artwork_yes" name="ntr_nsg_hasArtwork" value="Yes" style="margin-right: 5px; width: auto;">
+                                Yes
+                            </label>
+                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
+                                <input type="radio" id="ntr_nsg_artwork_no" name="ntr_nsg_hasArtwork" value="No" style="margin-right: 5px; width: auto;">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                `;
+                return section;
+            }
+
+            createShortCutTemplateFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="ntr_sct_templateName">New Template Name</label>
+                        <input type="text" id="ntr_sct_templateName" name="ntr_sct_templateName" placeholder="Enter template name...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_sct_orderType">SCP Order Type</label>
+                        <div style="margin-top: 5px;">
+                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_design_consult" name="ntr_sct_orderType" value="Design Consult (No Scraper)" style="margin-right: 5px; width: auto;">
+                                Design Consult (No Scraper)
+                            </label>
+                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_program_approval" name="ntr_sct_orderType" value="Program Approval (Scraper & Creative)" style="margin-right: 5px; width: auto;">
+                                Program Approval (Scraper & Creative)
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_sct_newCarCoverage">New Car Coverage</label>
+                        <div style="margin-top: 5px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_new_shortcut_pack" name="ntr_sct_newCarCoverage" value="ShortCut Pack" style="margin-right: 5px; width: auto;">
+                                ShortCut Pack
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_new_shortcut_only" name="ntr_sct_newCarCoverage" value="ShortCut ONLY" style="margin-right: 5px; width: auto;">
+                                ShortCut ONLY
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_new_windshield_only" name="ntr_sct_newCarCoverage" value="Windshield ONLY" style="margin-right: 5px; width: auto;">
+                                Windshield ONLY
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_new_none" name="ntr_sct_newCarCoverage" value="NONE" style="margin-right: 5px; width: auto;">
+                                NONE
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_sct_usedCarCoverage">Used Car Coverage</label>
+                        <div style="margin-top: 5px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_used_shortcut_pack" name="ntr_sct_usedCarCoverage" value="ShortCut Pack" style="margin-right: 5px; width: auto;">
+                                ShortCut Pack
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_used_shortcut_only" name="ntr_sct_usedCarCoverage" value="ShortCut ONLY" style="margin-right: 5px; width: auto;">
+                                ShortCut ONLY
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_used_windshield_only" name="ntr_sct_usedCarCoverage" value="Windshield ONLY" style="margin-right: 5px; width: auto;">
+                                Windshield ONLY
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_used_none" name="ntr_sct_usedCarCoverage" value="NONE" style="margin-right: 5px; width: auto;">
+                                NONE
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_sct_orderEntryMethod">Order Entry Method</label>
+                        <div style="margin-top: 5px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_lot_walk" name="ntr_sct_orderEntryMethod" value="Lot Walk/Manual Entry" style="margin-right: 5px; width: auto;">
+                                Lot Walk/Manual Entry
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_automated" name="ntr_sct_orderEntryMethod" value="Automated- Every Vehicle – Difference" style="margin-right: 5px; width: auto;">
+                                Automated- Every Vehicle – Difference
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_cx_provided" name="ntr_sct_orderEntryMethod" value="CX Provided List" style="margin-right: 5px; width: auto;">
+                                CX Provided List
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_other_entry" name="ntr_sct_orderEntryMethod" value="Other" style="margin-right: 5px; width: auto;">
+                                Other
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_sct_startupOrder">Startup order</label>
+                        <div style="margin-top: 5px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_full_coverage" name="ntr_sct_startupOrder" value="Full Coverage" style="margin-right: 5px; width: auto;">
+                                Full Coverage
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_transitional" name="ntr_sct_startupOrder" value="Transitional" style="margin-right: 5px; width: auto;">
+                                Transitional
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_cx_provided_startup" name="ntr_sct_startupOrder" value="CX Provided List" style="margin-right: 5px; width: auto;">
+                                CX Provided List
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_other_startup" name="ntr_sct_startupOrder" value="Other" style="margin-right: 5px; width: auto;">
+                                Other
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_sct_desiredShape">Desired Shape</label>
+                        <div style="margin-top: 5px;">
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_v1_rectangle" name="ntr_sct_desiredShape" value="V1 – Rectangle" style="margin-right: 5px; width: auto;">
+                                V1 – Rectangle
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_v2_tanto" name="ntr_sct_desiredShape" value="V2 – Tanto" style="margin-right: 5px; width: auto;">
+                                V2 – Tanto
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_v3_pennant" name="ntr_sct_desiredShape" value="V3 – Pennant" style="margin-right: 5px; width: auto;">
+                                V3 – Pennant
+                            </label>
+                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_no_preference" name="ntr_sct_desiredShape" value="No Preference" style="margin-right: 5px; width: auto;">
+                                No Preference
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_sct_details">Details</label>
+                        <small>Color Schemes, References to Design Styles, Anything else we need to know</small>
+                        <textarea id="ntr_sct_details" name="ntr_sct_details" placeholder="Color Schemes, References to Design Styles, Anything else we need to know"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_sct_hasArtwork">Do you have a artwork? (Select One)</label>
+                        <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
+                        <div style="margin-top: 5px;">
+                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_artwork_yes" name="ntr_sct_hasArtwork" value="Yes" style="margin-right: 5px; width: auto;">
+                                Yes
+                            </label>
+                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
+                                <input type="radio" id="ntr_sct_artwork_no" name="ntr_sct_hasArtwork" value="No" style="margin-right: 5px; width: auto;">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                `;
+                return section;
+            }
+
+            createFlyoutTemplateFields() {
+                const section = document.createElement('div');
+                section.className = 'nested-conditional-fields';
+                section.innerHTML = `
+                    <div class="form-group">
+                        <label for="ntr_ft_templateName">New Template Name</label>
+                        <input type="text" id="ntr_ft_templateName" name="ntr_ft_templateName" placeholder="Enter template name...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_ft_details">Details</label>
+                        <small>Color Schemes, References to Design Styles, Anything else we need to know</small>
+                        <textarea id="ntr_ft_details" name="ntr_ft_details" placeholder="Color Schemes, References to Design Styles, Anything else we need to know"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ntr_ft_hasArtwork">Do you have a artwork? (Select One)</label>
+                        <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
+                        <div style="margin-top: 5px;">
+                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
+                                <input type="radio" id="ntr_ft_artwork_yes" name="ntr_ft_hasArtwork" value="Yes" style="margin-right: 5px; width: auto;">
+                                Yes
+                            </label>
+                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
+                                <input type="radio" id="ntr_ft_artwork_no" name="ntr_ft_hasArtwork" value="No" style="margin-right: 5px; width: auto;">
+                                No
+                            </label>
+                        </div>
+                    </div>
+                `;
+                return section;
+            }
+
+            createBusinessCardsSection(container) {
+                const section = document.createElement('fieldset');
+                section.className = 'conditional-section';
+                section.innerHTML = `
+                    <legend>Business Cards Details</legend>
+                    
+                    <div class="form-group">
+                        <label for="bc_quotedPrice">*Quoted Price</label>
+                        <small>(Material + Design Setup + Install)</small>
+                        <input type="text" id="bc_quotedPrice" name="bc_quotedPrice" placeholder="Enter quoted price...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bc_singleOrDouble">Single or Double Sided</label>
+                        <select id="bc_singleOrDouble" name="bc_singleOrDouble">
+                            <option value="">Select</option>
+                            <option value="Single Sided">Single Sided</option>
+                            <option value="Double Sided">Double Sided</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bc_quantity">Quantity</label>
+                        <select id="bc_quantity" name="bc_quantity">
+                            <option value="">Select</option>
+                            <option value="250">250</option>
+                            <option value="500">500</option>
+                            <option value="1000">1000</option>
+                            <option value="2500">2500</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bc_text">Text</label>
+                        <textarea id="bc_text" name="bc_text" placeholder="Email, Phone Number, Name, etc."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="bc_description">Description</label>
+                        <textarea id="bc_description" name="bc_description" placeholder="Any other additional details like design style or color."></textarea>
+                    </div>
+                `;
+                
+                container.appendChild(section);
+                this.animateIn(section);
+            }
+
+            animateIn(element) {
+                setTimeout(() => {
+                    element.classList.add('show');
+                }, 100);
+            }
+
+            animateNestedIn(element) {
+                setTimeout(() => {
+                    element.classList.add('show');
+                }, 100);
+            }
+
+            generateOrderSummary() {
+                const formData = new FormData(document.getElementById('orderForm'));
+                let summary = '**SILVER FOX MARKETING STL - ORDER DETAILS**\n\n';
+
+                // Basic Order Information
+                const orderType = formData.get('orderType');
+                if (orderType) {
+                    summary += `**ORDER TYPE:** ${orderType}\n\n`;
+
+                    // Order-specific details
+                    switch (orderType) {
+                        case 'Dealership Merchandising':
+                            const dmQuotedPrice = formData.get('dm_quotedPrice');
+                            const dmInstallLocation = formData.get('dm_installLocation');
+                            const dmProductType = formData.get('dm_productType');
+                            
+                            if (dmQuotedPrice) summary += `**Quoted Price:** ${dmQuotedPrice}\n`;
+                            if (dmInstallLocation) summary += `**Install Location:** ${dmInstallLocation}\n`;
+                            if (dmProductType) {
+                                summary += `**Product Type:** ${dmProductType}\n`;
+                                
+                                switch (dmProductType) {
+                                    case 'Custom Designed Pole Banners':
+                                        const pbMaterial = formData.get('dm_pb_materialType');
+                                        const pbDimensions = formData.get('dm_pb_dimensions');
+                                        const pbText = formData.get('dm_pb_text');
+                                        const pbDesign = formData.get('dm_pb_designDetails');
+                                        const pbArtwork = formData.get('dm_pb_artworkUpload');
+                                        
+                                        if (pbMaterial) summary += `**Material:** ${pbMaterial}\n`;
+                                        if (pbDimensions) summary += `**Dimensions:** ${pbDimensions}\n`;
+                                        if (pbText) summary += `**Text:** ${pbText}\n`;
+                                        if (pbDesign) summary += `**Design Details:** ${pbDesign}\n`;
+                                        if (pbArtwork) summary += `**Artwork:** ${pbArtwork}\n`;
+                                        break;
+                                        
+                                    case 'Custom Designed Interior Showroom Graphics':
+                                        const isgSurface = formData.get('dm_isg_surfaceType');
+                                        const isgMaterial = formData.get('dm_isg_materialType');
+                                        const isgMaxWidth = formData.get('dm_isg_maxWidth');
+                                        const isgMaxHeight = formData.get('dm_isg_maxHeight');
+                                        const isgWidth = formData.get('dm_isg_graphicWidth');
+                                        const isgHeight = formData.get('dm_isg_graphicHeight');
+                                        const isgText = formData.get('dm_isg_text');
+                                        const isgDesign = formData.get('dm_isg_designDetails');
+                                        
+                                        if (isgSurface) summary += `**Surface Type:** ${isgSurface}\n`;
+                                        if (isgMaterial) summary += `**Material:** ${isgMaterial}\n`;
+                                        if (isgMaxWidth) summary += `**Max Width:** ${isgMaxWidth}\n`;
+                                        if (isgMaxHeight) summary += `**Max Height:** ${isgMaxHeight}\n`;
+                                        if (isgWidth) summary += `**Graphic Width:** ${isgWidth}\n`;
+                                        if (isgHeight) summary += `**Graphic Height:** ${isgHeight}\n`;
+                                        if (isgText) summary += `**Text:** ${isgText}\n`;
+                                        if (isgDesign) summary += `**Design Details:** ${isgDesign}\n`;
+                                        break;
+                                        
+                                    case 'Custom Designed Showroom Graphics':
+                                        const sgMaterial = formData.get('dm_sg_materialType');
+                                        const sgLamination = formData.get('dm_sg_addLamination');
+                                        const sgWindowType = formData.get('dm_sg_windowType');
+                                        const sgSize = formData.get('dm_sg_sizeDetails');
+                                        const sgText = formData.get('dm_sg_text');
+                                        const sgDesign = formData.get('dm_sg_designDetails');
+                                        
+                                        if (sgMaterial) summary += `**Material:** ${sgMaterial}\n`;
+                                        if (sgLamination) summary += `**Add Lamination:** ${sgLamination}\n`;
+                                        if (sgWindowType) summary += `**Window Type:** ${sgWindowType}\n`;
+                                        if (sgSize) summary += `**Size Details:** ${sgSize}\n`;
+                                        if (sgText) summary += `**Text:** ${sgText}\n`;
+                                        if (sgDesign) summary += `**Design Details:** ${sgDesign}\n`;
+                                        break;
+                                }
+                                summary += '\n';
+                            }
+                            break;
+
+                        case 'Vehicle Merchandising':
+                            const vmProductType = formData.get('vm_productType');
+                            if (vmProductType) {
+                                summary += `**Product Type:** ${vmProductType}\n`;
+                                
+                                switch (vmProductType) {
+                                    case 'Windshield Banners':
+                                        const wbSize = formData.get('vm_wb_productSize');
+                                        const wbMaterial = formData.get('vm_wb_materialType');
+                                        const wbText = formData.get('vm_wb_text');
+                                        const wbDesign = formData.get('vm_wb_designDetails');
+                                        const wbArtwork = formData.get('vm_wb_artworkUpload');
+                                        
+                                        if (wbSize) summary += `**Size:** ${wbSize}\n`;
+                                        if (wbMaterial) summary += `**Material:** ${wbMaterial}\n`;
+                                        if (wbText) summary += `**Text:** ${wbText}\n`;
+                                        if (wbDesign) summary += `**Design Details:** ${wbDesign}\n`;
+                                        if (wbArtwork) summary += `**Artwork:** ${wbArtwork}\n`;
+                                        break;
+                                        
+                                    case 'Side Banners':
+                                        const sbSize = formData.get('vm_sb_productSize');
+                                        const sbMaterial = formData.get('vm_sb_materialType');
+                                        const sbText = formData.get('vm_sb_text');
+                                        const sbDesign = formData.get('vm_sb_designDetails');
+                                        const sbArtwork = formData.get('vm_sb_artworkUpload');
+                                        
+                                        if (sbSize) summary += `**Size:** ${sbSize}\n`;
+                                        if (sbMaterial) summary += `**Material:** ${sbMaterial}\n`;
+                                        if (sbText) summary += `**Text:** ${sbText}\n`;
+                                        if (sbDesign) summary += `**Design Details:** ${sbDesign}\n`;
+                                        if (sbArtwork) summary += `**Artwork:** ${sbArtwork}\n`;
+                                        break;
+                                        
+                                    case 'Complement Graphics':
+                                        const cgSize = formData.get('vm_cg_productSize');
+                                        const cgMaterial = formData.get('vm_cg_materialType');
+                                        const cgText = formData.get('vm_cg_text');
+                                        const cgDesign = formData.get('vm_cg_designDetails');
+                                        const cgArtwork = formData.get('vm_cg_artworkUpload');
+                                        
+                                        if (cgSize) summary += `**Size:** ${cgSize}\n`;
+                                        if (cgMaterial) summary += `**Material:** ${cgMaterial}\n`;
+                                        if (cgText) summary += `**Text:** ${cgText}\n`;
+                                        if (cgDesign) summary += `**Design Details:** ${cgDesign}\n`;
+                                        if (cgArtwork) summary += `**Artwork:** ${cgArtwork}\n`;
+                                        break;
+                                        
+                                    case 'Specially Sized Graphics':
+                                        const ssgSize = formData.get('vm_ssg_sizeDetails');
+                                        const ssgMaterial = formData.get('vm_ssg_materialType');
+                                        const ssgText = formData.get('vm_ssg_text');
+                                        const ssgDesign = formData.get('vm_ssg_designDetails');
+                                        const ssgArtwork = formData.get('vm_ssg_artworkUpload');
+                                        
+                                        if (ssgSize) summary += `**Size Details:** ${ssgSize}\n`;
+                                        if (ssgMaterial) summary += `**Material:** ${ssgMaterial}\n`;
+                                        if (ssgText) summary += `**Text:** ${ssgText}\n`;
+                                        if (ssgDesign) summary += `**Design Details:** ${ssgDesign}\n`;
+                                        if (ssgArtwork) summary += `**Artwork:** ${ssgArtwork}\n`;
+                                        break;
+                                }
+                                summary += '\n';
+                            }
+                            break;
+
+                        case 'New Template Request':
+                            const ntrQuotedPrice = formData.get('ntr_quotedPrice');
+                            const ntrRequestType = formData.get('ntr_requestType');
+
+                            if (ntrQuotedPrice) summary += `**Quoted Price:** ${ntrQuotedPrice}\n`;
+                            if (ntrRequestType) {
+                                summary += `**Request Type:** ${ntrRequestType}\n`;
+                                
+                                switch (ntrRequestType) {
+                                    case 'New Standard Graphic':
+                                        const nsgTemplateName = formData.get('ntr_nsg_templateName');
+                                        const nsgDetails = formData.get('ntr_nsg_details');
+                                        const nsgHasArtwork = formData.get('ntr_nsg_hasArtwork');
+                                        
+                                        if (nsgTemplateName) summary += `**Template Name:** ${nsgTemplateName}\n`;
+                                        if (nsgDetails) summary += `**Details:** ${nsgDetails}\n`;
+                                        if (nsgHasArtwork) summary += `**Has Artwork:** ${nsgHasArtwork}\n`;
+                                        break;
+                                        
+                                    case 'ShortCut Template':
+                                        const sctTemplateName = formData.get('ntr_sct_templateName');
+                                        const sctOrderType = formData.get('ntr_sct_orderType');
+                                        const sctNewCarCoverage = formData.get('ntr_sct_newCarCoverage');
+                                        const sctUsedCarCoverage = formData.get('ntr_sct_usedCarCoverage');
+                                        const sctOrderEntryMethod = formData.get('ntr_sct_orderEntryMethod');
+                                        const sctStartupOrder = formData.get('ntr_sct_startupOrder');
+                                        const sctDesiredShape = formData.get('ntr_sct_desiredShape');
+                                        const sctDetails = formData.get('ntr_sct_details');
+                                        const sctHasArtwork = formData.get('ntr_sct_hasArtwork');
+                                        
+                                        if (sctTemplateName) summary += `**Template Name:** ${sctTemplateName}\n`;
+                                        if (sctOrderType) summary += `**SCP Order Type:** ${sctOrderType}\n`;
+                                        if (sctNewCarCoverage) summary += `**New Car Coverage:** ${sctNewCarCoverage}\n`;
+                                        if (sctUsedCarCoverage) summary += `**Used Car Coverage:** ${sctUsedCarCoverage}\n`;
+                                        if (sctOrderEntryMethod) summary += `**Order Entry Method:** ${sctOrderEntryMethod}\n`;
+                                        if (sctStartupOrder) summary += `**Startup Order:** ${sctStartupOrder}\n`;
+                                        if (sctDesiredShape) summary += `**Desired Shape:** ${sctDesiredShape}\n`;
+                                        if (sctDetails) summary += `**Details:** ${sctDetails}\n`;
+                                        if (sctHasArtwork) summary += `**Has Artwork:** ${sctHasArtwork}\n`;
+                                        break;
+                                        
+                                    case 'Flyout Template':
+                                        const ftTemplateName = formData.get('ntr_ft_templateName');
+                                        const ftDetails = formData.get('ntr_ft_details');
+                                        const ftHasArtwork = formData.get('ntr_ft_hasArtwork');
+                                        
+                                        if (ftTemplateName) summary += `**Template Name:** ${ftTemplateName}\n`;
+                                        if (ftDetails) summary += `**Details:** ${ftDetails}\n`;
+                                        if (ftHasArtwork) summary += `**Has Artwork:** ${ftHasArtwork}\n`;
+                                        break;
+                                }
+                                summary += '\n';
+                            }
+                            break;
+                        
+                        case 'Custom Special Products':
+                            const cspQuotedPrice = formData.get('csp_quotedPrice');
+                            const cspInstallLocation = formData.get('csp_installLocation');
+                            const cspProductType = formData.get('csp_productType');
+                            const cspMaterialType = formData.get('csp_materialType');
+                            const cspOtherMaterial = formData.get('csp_otherMaterial');
+                            const cspSizeDetails = formData.get('csp_sizeDetails');
+                            const cspText = formData.get('csp_text');
+                            const cspDesignNotes = formData.get('csp_designNotes');
+                            
+                            if (cspQuotedPrice) summary += `**Quoted Price:** ${cspQuotedPrice}\n`;
+                            if (cspInstallLocation) summary += `**Install Location:** ${cspInstallLocation}\n`;
+                            if (cspProductType) summary += `**Product Type:** ${cspProductType}\n`;
+                            if (cspMaterialType) {
+                                summary += `**Material Type:** ${cspMaterialType}\n`;
+                                if (cspMaterialType === 'Other' && cspOtherMaterial) {
+                                    summary += `**Other Material:** ${cspOtherMaterial}\n`;
+                                }
+                            }
+                            if (cspSizeDetails) summary += `**Size Details:** ${cspSizeDetails}\n`;
+                            if (cspText) summary += `**Text:** ${cspText}\n`;
+                            if (cspDesignNotes) summary += `**Design Notes:** ${cspDesignNotes}\n`;
+                            summary += '\n';
+                            break;
+                    }
+                }
+
+                // Additional Information
+                const specialInstructions = formData.get('specialInstructions');
+                const poNumber = formData.get('poNumber');
+
+                if (specialInstructions || poNumber) {
+                    summary += '**ADDITIONAL INFORMATION:**\n';
+                    if (specialInstructions) summary += `**Special Instructions:** ${specialInstructions}\n`;
+                    if (poNumber) summary += `**PO Number:** ${poNumber}\n`;
+                }
+
+                summary += '\n---\n*Generated by Silver Fox Marketing Order Form Tool*';
+
+                document.getElementById('outputText').value = summary;
+            }
+
+            copyToClipboard() {
+                const outputText = document.getElementById('outputText');
+                const button = document.getElementById('copyButton');
+                const originalText = button.textContent;
+
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(outputText.value).then(() => {
+                        button.textContent = '✓ Copied!';
+                        button.style.backgroundColor = '#4CAF50';
+                        
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.style.backgroundColor = '#333';
+                        }, 2000);
+                    });
+                } else {
+                    outputText.select();
+                    outputText.setSelectionRange(0, 99999);
+                    
+                    try {
+                        document.execCommand('copy');
+                        button.textContent = '✓ Copied!';
+                        button.style.backgroundColor = '#4CAF50';
+                        
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                            button.style.backgroundColor = '#333';
+                        }, 2000);
+                    } catch (err) {
+                        console.error('Failed to copy text: ', err);
+                    }
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            new OrderFormEngine();
+        });
+    </script>
+</body>
+</html>
