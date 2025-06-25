@@ -1531,7 +1531,7 @@
                 // Basic Order Information
                 const orderType = formData.get('orderType');
                 if (orderType) {
-                    summary += `**ORDER TYPE:** ${orderType}\n\n`;
+                    summary += `ORDER TYPE: ${orderType}\n\n`;
 
                     // Order-specific details
                     switch (orderType) {
@@ -1548,11 +1548,11 @@
                                         const wbDesign = formData.get('vm_wb_designDetails');
                                         const wbArtwork = formData.get('vm_wb_artworkUpload');
                                         
-                                        if (wbSize) summary += `**Size:** ${wbSize}\n`;
-                                        if (wbMaterial) summary += `**Material:** ${wbMaterial}\n`;
-                                        if (wbText) summary += `**Text:** ${wbText}\n`;
-                                        if (wbDesign) summary += `**Design Details:** ${wbDesign}\n`;
-                                        if (wbArtwork) summary += `**Artwork:** ${wbArtwork}\n`;
+                                        if (wbSize) summary += `SIZE: ${wbSize}\n`;
+                                        if (wbMaterial) summary += `MATERIAL: ${wbMaterial}\n`;
+                                        if (wbText) summary += `TEXT: ${wbText}\n`;
+                                        if (wbDesign) summary += `DESIGN DETAILS: ${wbDesign}\n`;
+                                        if (wbArtwork) summary += `ARTWORK: ${wbArtwork}\n`;
                                         break;
                                         
                                     case 'Side Banners':
@@ -1562,11 +1562,11 @@
                                         const sbDesign = formData.get('vm_sb_designDetails');
                                         const sbArtwork = formData.get('vm_sb_artworkUpload');
                                         
-                                        if (sbSize) summary += `**Size:** ${sbSize}\n`;
-                                        if (sbMaterial) summary += `**Material:** ${sbMaterial}\n`;
-                                        if (sbText) summary += `**Text:** ${sbText}\n`;
-                                        if (sbDesign) summary += `**Design Details:** ${sbDesign}\n`;
-                                        if (sbArtwork) summary += `**Artwork:** ${sbArtwork}\n`;
+                                        if (sbSize) summary += `SIZE: ${sbSize}\n`;
+                                        if (sbMaterial) summary += `MATERIAL: ${sbMaterial}\n`;
+                                        if (sbText) summary += `TEXT: ${sbText}\n`;
+                                        if (sbDesign) summary += `DESIGN DETAILS: ${sbDesign}\n`;
+                                        if (sbArtwork) summary += `ARTWORK: ${sbArtwork}\n`;
                                         break;
                                         
                                     case 'Complement Graphics':
@@ -1576,11 +1576,11 @@
                                         const cgDesign = formData.get('vm_cg_designDetails');
                                         const cgArtwork = formData.get('vm_cg_artworkUpload');
                                         
-                                        if (cgSize) summary += `**Size:** ${cgSize}\n`;
-                                        if (cgMaterial) summary += `**Material:** ${cgMaterial}\n`;
-                                        if (cgText) summary += `**Text:** ${cgText}\n`;
-                                        if (cgDesign) summary += `**Design Details:** ${cgDesign}\n`;
-                                        if (cgArtwork) summary += `**Artwork:** ${cgArtwork}\n`;
+                                        if (cgSize) summary += `SIZE: ${cgSize}\n`;
+                                        if (cgMaterial) summary += `MATERIAL: ${cgMaterial}\n`;
+                                        if (cgText) summary += `TEXT: ${cgText}\n`;
+                                        if (cgDesign) summary += `DESIGN DETAILS: ${cgDesign}\n`;
+                                        if (cgArtwork) summary += `ARTWORK: ${cgArtwork}\n`;
                                         break;
                                         
                                     case 'Specially Sized Graphics':
@@ -1590,11 +1590,11 @@
                                         const ssgDesign = formData.get('vm_ssg_designDetails');
                                         const ssgArtwork = formData.get('vm_ssg_artworkUpload');
                                         
-                                        if (ssgSize) summary += `**Size Details:** ${ssgSize}\n`;
-                                        if (ssgMaterial) summary += `**Material:** ${ssgMaterial}\n`;
-                                        if (ssgText) summary += `**Text:** ${ssgText}\n`;
-                                        if (ssgDesign) summary += `**Design Details:** ${ssgDesign}\n`;
-                                        if (ssgArtwork) summary += `**Artwork:** ${ssgArtwork}\n`;
+                                        if (ssgSize) summary += `SIZE DETAILS: ${ssgSize}\n`;
+                                        if (ssgMaterial) summary += `MATERIALS: ${ssgMaterial}\n`;
+                                        if (ssgText) summary += `TEXT: ${ssgText}\n`;
+                                        if (ssgDesign) summary += `DESIGN DETAILS: ${ssgDesign}\n`;
+                                        if (ssgArtwork) summary += `ARTWORK: ${ssgArtwork}\n`;
                                         break;
                                 }
                                 summary += '\n';
@@ -1606,10 +1606,10 @@
                             const dmInstallLocation = formData.get('dm_installLocation');
                             const dmProductType = formData.get('dm_productType');
                             
-                            if (dmQuotedPrice) summary += `**Quoted Price:** ${dmQuotedPrice}\n`;
-                            if (dmInstallLocation) summary += `**Install Location:** ${dmInstallLocation}\n`;
+                            if (dmQuotedPrice) summary += `QUOTED PRICE: ${dmQuotedPrice}\n`;
+                            if (dmInstallLocation) summary += `INSTALL LOCATION: ${dmInstallLocation}\n`;
                             if (dmProductType) {
-                                summary += `**Product Type:** ${dmProductType}\n`;
+                                summary += `PRODUCT TYPE: ${dmProductType}\n`;
                                 
                                 switch (dmProductType) {
                                     case 'Custom Designed Pole Banners':
@@ -1619,11 +1619,11 @@
                                         const pbDesign = formData.get('dm_pb_designDetails');
                                         const pbArtwork = formData.get('dm_pb_artworkUpload');
                                         
-                                        if (pbMaterial) summary += `**Material:** ${pbMaterial}\n`;
-                                        if (pbDimensions) summary += `**Dimensions:** ${pbDimensions}\n`;
-                                        if (pbText) summary += `**Text:** ${pbText}\n`;
-                                        if (pbDesign) summary += `**Design Details:** ${pbDesign}\n`;
-                                        if (pbArtwork) summary += `**Artwork:** ${pbArtwork}\n`;
+                                        if (pbMaterial) summary += `MATERIAL: ${pbMaterial}\n`;
+                                        if (pbDimensions) summary += `DIMENSIONS: ${pbDimensions}\n`;
+                                        if (pbText) summary += `TEXT: ${pbText}\n`;
+                                        if (pbDesign) summary += `DESIGN DETAILS: ${pbDesign}\n`;
+                                        if (pbArtwork) summary += `ARTWORK: ${pbArtwork}\n`;
                                         break;
                                         
                                     case 'Custom Designed Interior Showroom Graphics':
@@ -1636,14 +1636,14 @@
                                         const isgText = formData.get('dm_isg_text');
                                         const isgDesign = formData.get('dm_isg_designDetails');
                                         
-                                        if (isgSurface) summary += `**Surface Type:** ${isgSurface}\n`;
-                                        if (isgMaterial) summary += `**Material:** ${isgMaterial}\n`;
-                                        if (isgMaxWidth) summary += `**Max Width:** ${isgMaxWidth}\n`;
-                                        if (isgMaxHeight) summary += `**Max Height:** ${isgMaxHeight}\n`;
-                                        if (isgWidth) summary += `**Graphic Width:** ${isgWidth}\n`;
-                                        if (isgHeight) summary += `**Graphic Height:** ${isgHeight}\n`;
-                                        if (isgText) summary += `**Text:** ${isgText}\n`;
-                                        if (isgDesign) summary += `**Design Details:** ${isgDesign}\n`;
+                                        if (isgSurface) summary += `SURFACE TYPE: ${isgSurface}\n`;
+                                        if (isgMaterial) summary += `MATERIAL: ${isgMaterial}\n`;
+                                        if (isgMaxWidth) summary += `MAX WIDTH: ${isgMaxWidth}\n`;
+                                        if (isgMaxHeight) summary += `MAX HEIGHT: ${isgMaxHeight}\n`;
+                                        if (isgWidth) summary += `GRAPHIC WIDTH: ${isgWidth}\n`;
+                                        if (isgHeight) summary += `GRAPHIC HEIGHT: ${isgHeight}\n`;
+                                        if (isgText) summary += `TEXT: ${isgText}\n`;
+                                        if (isgDesign) summary += `DESIGN DETAILS: ${isgDesign}\n`;
                                         break;
                                         
                                     case 'Custom Designed Showroom Graphics':
@@ -1654,12 +1654,12 @@
                                         const sgText = formData.get('dm_sg_text');
                                         const sgDesign = formData.get('dm_sg_designDetails');
                                         
-                                        if (sgMaterial) summary += `**Material:** ${sgMaterial}\n`;
-                                        if (sgLamination) summary += `**Add Lamination:** ${sgLamination}\n`;
-                                        if (sgWindowType) summary += `**Window Type:** ${sgWindowType}\n`;
-                                        if (sgSize) summary += `**Size Details:** ${sgSize}\n`;
-                                        if (sgText) summary += `**Text:** ${sgText}\n`;
-                                        if (sgDesign) summary += `**Design Details:** ${sgDesign}\n`;
+                                        if (sgMaterial) summary += `MATERIAL: ${sgMaterial}\n`;
+                                        if (sgLamination) summary += `ADD LAMINATION: ${sgLamination}\n`;
+                                        if (sgWindowType) summary += `WINDOW TYPE: ${sgWindowType}\n`;
+                                        if (sgSize) summary += `SIZE DETAILS: ${sgSize}\n`;
+                                        if (sgText) summary += `TEXT: ${sgText}\n`;
+                                        if (sgDesign) summary += `DESIGN DETAILS: ${sgDesign}\n`;
                                         break;
                                 }
                                 summary += '\n';
@@ -1676,18 +1676,18 @@
                             const cspText = formData.get('csp_text');
                             const cspDesignNotes = formData.get('csp_designNotes');
                             
-                            if (cspQuotedPrice) summary += `**Quoted Price:** ${cspQuotedPrice}\n`;
-                            if (cspInstallLocation) summary += `**Install Location:** ${cspInstallLocation}\n`;
-                            if (cspProductType) summary += `**Product Type:** ${cspProductType}\n`;
+                            if (cspQuotedPrice) summary += `QUOTED PRICE: ${cspQuotedPrice}\n`;
+                            if (cspInstallLocation) summary += `INSTALL LOCATION: ${cspInstallLocation}\n`;
+                            if (cspProductType) summary += `PRODUCT TYPE: ${cspProductType}\n`;
                             if (cspMaterialType) {
-                                summary += `**Material Type:** ${cspMaterialType}\n`;
+                                summary += `MATERIAL TYPE: ${cspMaterialType}\n`;
                                 if (cspMaterialType === 'Other' && cspOtherMaterial) {
-                                    summary += `**Other Material:** ${cspOtherMaterial}\n`;
+                                    summary += `OTHER MATERIALS: ${cspOtherMaterial}\n`;
                                 }
                             }
-                            if (cspSizeDetails) summary += `**Size Details:** ${cspSizeDetails}\n`;
-                            if (cspText) summary += `**Text:** ${cspText}\n`;
-                            if (cspDesignNotes) summary += `**Design Notes:** ${cspDesignNotes}\n`;
+                            if (cspSizeDetails) summary += `SIZE DETAILS: ${cspSizeDetails}\n`;
+                            if (cspText) summary += `TEXT: ${cspText}\n`;
+                            if (cspDesignNotes) summary += `DESIGN NOTES: ${cspDesignNotes}\n`;
                             summary += '\n';
                             break;
 
@@ -1695,9 +1695,9 @@
                             const ntrQuotedPrice = formData.get('ntr_quotedPrice');
                             const ntrRequestType = formData.get('ntr_requestType');
 
-                            if (ntrQuotedPrice) summary += `**Quoted Price:** ${ntrQuotedPrice}\n`;
+                            if (ntrQuotedPrice) summary += `QUOTED PRICE: ${ntrQuotedPrice}\n`;
                             if (ntrRequestType) {
-                                summary += `**Request Type:** ${ntrRequestType}\n`;
+                                summary += `REQUEST TYPE: ${ntrRequestType}\n`;
                                 
                                 switch (ntrRequestType) {
                                     case 'New Standard Graphic':
@@ -1705,9 +1705,9 @@
                                         const nsgDetails = formData.get('ntr_nsg_details');
                                         const nsgHasArtwork = formData.get('ntr_nsg_hasArtwork');
                                         
-                                        if (nsgTemplateName) summary += `**Template Name:** ${nsgTemplateName}\n`;
-                                        if (nsgDetails) summary += `**Details:** ${nsgDetails}\n`;
-                                        if (nsgHasArtwork) summary += `**Has Artwork:** ${nsgHasArtwork}\n`;
+                                        if (nsgTemplateName) summary += `TEMPLATE NAME: ${nsgTemplateName}\n`;
+                                        if (nsgDetails) summary += `DETAILS: ${nsgDetails}\n`;
+                                        if (nsgHasArtwork) summary += `HAS ARTWORK: ${nsgHasArtwork}\n`;
                                         break;
                                         
                                     case 'ShortCut Template':
@@ -1721,15 +1721,15 @@
                                         const sctDetails = formData.get('ntr_sct_details');
                                         const sctHasArtwork = formData.get('ntr_sct_hasArtwork');
                                         
-                                        if (sctTemplateName) summary += `**Template Name:** ${sctTemplateName}\n`;
-                                        if (sctOrderType) summary += `**SCP Order Type:** ${sctOrderType}\n`;
-                                        if (sctNewCarCoverage) summary += `**New Car Coverage:** ${sctNewCarCoverage}\n`;
-                                        if (sctUsedCarCoverage) summary += `**Used Car Coverage:** ${sctUsedCarCoverage}\n`;
-                                        if (sctOrderEntryMethod) summary += `**Order Entry Method:** ${sctOrderEntryMethod}\n`;
-                                        if (sctStartupOrder) summary += `**Startup Order:** ${sctStartupOrder}\n`;
-                                        if (sctDesiredShape) summary += `**Desired Shape:** ${sctDesiredShape}\n`;
-                                        if (sctDetails) summary += `**Details:** ${sctDetails}\n`;
-                                        if (sctHasArtwork) summary += `**Has Artwork:** ${sctHasArtwork}\n`;
+                                        if (sctTemplateName) summary += `TEMPLATE NAME: ${sctTemplateName}\n`;
+                                        if (sctOrderType) summary += `SCP ORDER TYPE: ${sctOrderType}\n`;
+                                        if (sctNewCarCoverage) summary += `NEW CAR COVERAGE: ${sctNewCarCoverage}\n`;
+                                        if (sctUsedCarCoverage) summary += `USED CAR COVERAGE: ${sctUsedCarCoverage}\n`;
+                                        if (sctOrderEntryMethod) summary += `ORDER ENTRY METHOD: ${sctOrderEntryMethod}\n`;
+                                        if (sctStartupOrder) summary += `STARTUP ORDER: ${sctStartupOrder}\n`;
+                                        if (sctDesiredShape) summary += `DESIRED SHAPE: ${sctDesiredShape}\n`;
+                                        if (sctDetails) summary += `DETAILS: ${sctDetails}\n`;
+                                        if (sctHasArtwork) summary += `HAS ARTWORK: ${sctHasArtwork}\n`;
                                         break;
                                         
                                     case 'Flyout Template':
@@ -1737,9 +1737,9 @@
                                         const ftDetails = formData.get('ntr_ft_details');
                                         const ftHasArtwork = formData.get('ntr_ft_hasArtwork');
                                         
-                                        if (ftTemplateName) summary += `**Template Name:** ${ftTemplateName}\n`;
-                                        if (ftDetails) summary += `**Details:** ${ftDetails}\n`;
-                                        if (ftHasArtwork) summary += `**Has Artwork:** ${ftHasArtwork}\n`;
+                                        if (ftTemplateName) summary += `TEMPLATE NAME: ${ftTemplateName}\n`;
+                                        if (ftDetails) summary += `DETAILS: ${ftDetails}\n`;
+                                        if (ftHasArtwork) summary += `HAS ARTWORK: ${ftHasArtwork}\n`;
                                         break;
                                 }
                                 summary += '\n';
@@ -1753,11 +1753,11 @@
                             const bcText = formData.get('bc_text');
                             const bcDescription = formData.get('bc_description');
                             
-                            if (bcQuotedPrice) summary += `**Quoted Price:** ${bcQuotedPrice}\n`;
-                            if (bcSingleOrDouble) summary += `**Single or Double Sided:** ${bcSingleOrDouble}\n`;
-                            if (bcQuantity) summary += `**Quantity:** ${bcQuantity}\n`;
-                            if (bcText) summary += `**Text:** ${bcText}\n`;
-                            if (bcDescription) summary += `**Description:** ${bcDescription}\n`;
+                            if (bcQuotedPrice) summary += `QUOTED PRICE: ${bcQuotedPrice}\n`;
+                            if (bcSingleOrDouble) summary += `SINGLE OR DOUBLE SIDED: ${bcSingleOrDouble}\n`;
+                            if (bcQuantity) summary += `QUANTITY: ${bcQuantity}\n`;
+                            if (bcText) summary += `TEXT: ${bcText}\n`;
+                            if (bcDescription) summary += `DESCRIPTION: ${bcDescription}\n`;
                             summary += '\n';
                             break;
                     }
