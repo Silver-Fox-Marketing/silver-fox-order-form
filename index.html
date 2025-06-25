@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,20 +29,46 @@
         }
 
         .header {
-            background-color: #000;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #333333 100%);
             color: white;
             padding: 20px;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
+            animation: headerShimmer 6s infinite;
+        }
+
+        @keyframes headerShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
 
         .header h1 {
             font-size: 2em;
             margin-bottom: 5px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .header p {
             font-size: 1.1em;
             opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
         }
 
         .main-content {
@@ -100,48 +127,98 @@
         }
 
         .copy-button {
-            background-color: #333;
+            background: linear-gradient(135deg, #333 0%, #555 50%, #333 100%);
             color: white;
             border: none;
             padding: 12px 24px;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
             font-family: Verdana, Arial, sans-serif;
             font-size: 14px;
             font-weight: bold;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
         }
 
         .copy-button:hover {
-            background-color: #555;
+            background: linear-gradient(135deg, #444 0%, #666 50%, #444 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .copy-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .copy-button.success {
+            background: linear-gradient(135deg, #2e7d32 0%, #4CAF50 50%, #2e7d32 100%) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .copy-button.success:hover {
+            background: linear-gradient(135deg, #2e7d32 0%, #4CAF50 50%, #2e7d32 100%) !important;
+        }
+
+        .copy-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .copy-button:hover::before {
+            left: 100%;
         }
 
         .field-section {
-            border: 2px solid #333;
-            border-radius: 4px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .field-section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
         }
 
         .field-section legend {
-            background-color: #333;
+            background: linear-gradient(135deg, #333 0%, #555 100%);
             color: white;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            border: none;
         }
 
         .conditional-section {
-            border: 2px solid #000;
-            border-radius: 4px;
-            padding: 20px;
-            margin-bottom: 20px;
-            background-color: #000;
+            border: none;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            background: linear-gradient(145deg, #1a1a1a 0%, #2d2d2d 100%);
             color: white;
             opacity: 0;
             transform: translateY(-10px);
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .conditional-section.show {
@@ -150,23 +227,28 @@
         }
 
         .conditional-section legend {
-            background-color: #333;
+            background: linear-gradient(135deg, #444 0%, #666 100%);
             color: white;
-            padding: 8px 15px;
-            border-radius: 4px;
-            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
         }
 
         .nested-conditional-fields {
-            border: 2px solid #333;
-            border-radius: 4px;
-            padding: 15px;
-            margin-top: 15px;
-            background-color: #333;
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+            background: linear-gradient(145deg, #333 0%, #444 100%);
             color: white;
             opacity: 0;
             transform: translateY(-5px);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.3);
         }
 
         .nested-conditional-fields.show {
@@ -175,30 +257,77 @@
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 24px;
+            position: relative;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: inherit;
+            font-size: 14px;
+            transition: color 0.3s ease;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 16px;
+            border: 2px solid #e1e5e9;
+            border-radius: 8px;
             font-family: Verdana, Arial, sans-serif;
-            background-color: white;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
             color: #333;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-1px);
+            background: #ffffff;
+        }
+
+        .form-group input:hover,
+        .form-group select:hover,
+        .form-group textarea:hover {
+            border-color: #c1c7cd;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .conditional-section .form-group input,
+        .conditional-section .form-group select,
+        .conditional-section .form-group textarea,
+        .nested-conditional-fields .form-group input,
+        .nested-conditional-fields .form-group select,
+        .nested-conditional-fields .form-group textarea {
+            background: linear-gradient(145deg, #2a2a2a 0%, #1e1e1e 100%);
+            border: 2px solid #444;
+            color: white;
+        }
+
+        .conditional-section .form-group input:focus,
+        .conditional-section .form-group select:focus,
+        .conditional-section .form-group textarea:focus,
+        .nested-conditional-fields .form-group input:focus,
+        .nested-conditional-fields .form-group select:focus,
+        .nested-conditional-fields .form-group textarea:focus {
+            border-color: #66BB6A;
+            box-shadow: 0 0 0 3px rgba(102, 187, 106, 0.2), 0 4px 12px rgba(0, 0, 0, 0.3);
+            background: #333;
         }
 
         .form-group textarea {
-            min-height: 80px;
+            min-height: 90px;
             resize: vertical;
+            line-height: 1.5;
         }
 
         .required {
@@ -225,6 +354,130 @@
         small {
             color: #ffd700;
             font-style: italic;
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        .conditional-section small,
+        .nested-conditional-fields small {
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        /* Radio button styling */
+        .radio-group {
+            margin-top: 5px;
+        }
+
+        .radio-option {
+            display: inline-flex;
+            align-items: center;
+            margin-right: 20px;
+            margin-bottom: 5px;
+            font-weight: normal;
+        }
+
+        .radio-option input[type="radio"] {
+            margin-right: 5px;
+            width: auto;
+        }
+
+        .radio-vertical .radio-option {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Auto-save indicator styles */
+        .autosave-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .autosave-indicator.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .autosave-indicator.saving {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .autosave-indicator.saved {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .autosave-indicator.error {
+            background-color: #f44336;
+            color: white;
+        }
+
+        /* Draft notification styles */
+        .draft-notification {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border: 2px solid #FF9800;
+            border-radius: 8px;
+            padding: 16px;
+            margin: 20px;
+            box-shadow: 0 2px 8px rgba(255, 152, 0, 0.2);
+            display: none;
+        }
+
+        .draft-notification h3 {
+            color: #E65100;
+            margin: 0 0 8px 0;
+            font-size: 16px;
+        }
+
+        .draft-notification p {
+            color: #BF360C;
+            margin: 0 0 12px 0;
+            font-size: 14px;
+        }
+
+        .draft-notification .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .draft-notification button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .draft-notification .restore-btn {
+            background-color: #FF9800;
+            color: white;
+        }
+
+        .draft-notification .restore-btn:hover {
+            background-color: #F57C00;
+        }
+
+        .draft-notification .dismiss-btn {
+            background-color: #757575;
+            color: white;
+        }
+
+        .draft-notification .dismiss-btn:hover {
+            background-color: #616161;
         }
 
         /* Mobile Responsive */
@@ -257,15 +510,25 @@
     <div class="container">
         <div class="header">
             <div style="display: flex; align-items: center; justify-content: center; gap: 20px;">
-                <!-- COMPANY LOGO: Replace the URL below with your company logo URL -->
-                <div id="logoContainer" style="display: none;">
-                    <img id="companyLogo" src="https://lirp.cdn-website.com/c23d840a/dms3rep/multi/opt/SF-LOGO-HORIZ-BLACK-604w.png" alt="Company Logo" style="max-height: 60px; max-width: 200px; object-fit: contain;">
-                </div>
-                <!-- END LOGO SECTION -->
                 <div style="text-align: center;">
                     <h1>Silver Fox Marketing STL</h1>
                     <p>Internal Order Processing Tool</p>
                 </div>
+            </div>
+        </div>
+
+        <!-- Auto-save indicator -->
+        <div id="autosaveIndicator" class="autosave-indicator">
+            <span id="autosaveText">💾 Saving...</span>
+        </div>
+
+        <!-- Draft notification -->
+        <div id="draftNotification" class="draft-notification">
+            <h3>📋 Draft Found</h3>
+            <p>We found a saved draft from <span id="draftTimestamp"></span>. Would you like to restore your previous work?</p>
+            <div class="button-group">
+                <button id="restoreDraftBtn" class="restore-btn">Restore Draft</button>
+                <button id="dismissDraftBtn" class="dismiss-btn">Start Fresh</button>
             </div>
         </div>
 
@@ -314,17 +577,16 @@
     </div>
 
     <script>
-        // TO ADD YOUR COMPANY LOGO: Replace "YOUR_LOGO_URL_HERE" with your actual logo URL
-        const COMPANY_LOGO_URL = "YOUR_LOGO_URL_HERE"; // <-- CHANGE THIS TO YOUR LOGO URL
-
         class OrderFormEngine {
             constructor() {
                 this.init();
             }
 
             init() {
-                // Initialize logo if URL is provided
-                this.initializeLogo();
+                // Initialize auto-save
+                setTimeout(() => {
+                    this.initializeAutoSave();
+                }, 100);
 
                 document.getElementById('orderType').addEventListener('change', (e) => {
                     this.handleOrderTypeChange(e.target.value);
@@ -346,13 +608,12 @@
                 this.generateOrderSummary();
             }
 
-            initializeLogo() {
-                if (COMPANY_LOGO_URL && COMPANY_LOGO_URL !== "YOUR_LOGO_URL_HERE") {
-                    const logoContainer = document.getElementById('logoContainer');
-                    const companyLogo = document.getElementById('companyLogo');
-                    
-                    companyLogo.src = COMPANY_LOGO_URL;
-                    logoContainer.style.display = 'block';
+            initializeAutoSave() {
+                const indicator = document.getElementById('autosaveIndicator');
+                const notification = document.getElementById('draftNotification');
+                
+                if (indicator && notification) {
+                    this.autoSave = new AutoSave('orderForm');
                 }
             }
 
@@ -629,13 +890,11 @@
                     
                     <div class="form-group">
                         <label for="dm_quotedPrice">*Quoted Price</label>
-                        <small>(Material + Design Setup + Install)</small>
                         <input type="text" id="dm_quotedPrice" name="dm_quotedPrice" placeholder="Enter quoted price...">
                     </div>
                     
                     <div class="form-group">
                         <label for="dm_installLocation">Install Location</label>
-                        <small>EX: North Windows, Service Lane, etc. (Indoor/Outdoor - Permanent/Temporary)</small>
                         <input type="text" id="dm_installLocation" name="dm_installLocation" placeholder="EX: North Windows, Service Lane, etc. (Indoor/Outdoor - Permanent/Temporary)">
                     </div>
                     
@@ -757,26 +1016,22 @@
 
                     <div class="form-group">
                         <label for="dm_isg_maxWidth">Max Width</label>
-                        <small>This is the full Width of the space where graphics will be installed.</small>
-                        <input type="text" id="dm_isg_maxWidth" name="dm_isg_maxWidth" placeholder="This is the full Width of the space where graphics will be installed.">
+                        <input type="text" id="dm_isg_maxWidth" name="dm_isg_maxWidth" placeholder="Full width of the space where graphics will be installed">
                     </div>
 
                     <div class="form-group">
                         <label for="dm_isg_maxHeight">Max Height</label>
-                        <small>This is the full Height of the space where graphics will be installed.</small>
-                        <input type="text" id="dm_isg_maxHeight" name="dm_isg_maxHeight" placeholder="This is the full Height of the space where graphics will be installed.">
+                        <input type="text" id="dm_isg_maxHeight" name="dm_isg_maxHeight" placeholder="Full height of the space where graphics will be installed">
                     </div>
 
                     <div class="form-group">
                         <label for="dm_isg_graphicWidth">Graphic Width</label>
-                        <small>This is the Desired Final Width of the graphics. (Type "TBD" if Production should specify graphic size)</small>
-                        <input type="text" id="dm_isg_graphicWidth" name="dm_isg_graphicWidth" placeholder="This is the Desired Final Width of the graphics. (Type 'TBD' if Production should specify graphic size)">
+                        <input type="text" id="dm_isg_graphicWidth" name="dm_isg_graphicWidth" placeholder="Desired final width (Type 'TBD' if Production should specify)">
                     </div>
 
                     <div class="form-group">
                         <label for="dm_isg_graphicHeight">Graphic Height</label>
-                        <small>This is the desired Final Height of the graphics. (Type "TBD" if Production should specify graphic size)</small>
-                        <input type="text" id="dm_isg_graphicHeight" name="dm_isg_graphicHeight" placeholder="This is the desired Final Height of the graphics. (Type 'TBD' if Production should specify graphic size)">
+                        <input type="text" id="dm_isg_graphicHeight" name="dm_isg_graphicHeight" placeholder="Desired final height (Type 'TBD' if Production should specify)">
                     </div>
 
                     <div class="form-group">
@@ -810,13 +1065,13 @@
 
                     <div class="form-group">
                         <label for="dm_sg_addLamination">Add Lamination</label>
-                        <div style="margin-top: 5px;">
-                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
-                                <input type="radio" id="dm_sg_lamination_yes" name="dm_sg_addLamination" value="Yes" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" id="dm_sg_lamination_yes" name="dm_sg_addLamination" value="Yes">
                                 Yes
                             </label>
-                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
-                                <input type="radio" id="dm_sg_lamination_no" name="dm_sg_addLamination" value="No" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="dm_sg_lamination_no" name="dm_sg_addLamination" value="No">
                                 No
                             </label>
                         </div>
@@ -833,7 +1088,6 @@
 
                     <div class="form-group">
                         <label for="dm_sg_sizeDetails">Size Details</label>
-                        <small>Enter Width and Height of each window (Ex. 1=24" 2=25" 3=24" etc.)</small>
                         <textarea id="dm_sg_sizeDetails" name="dm_sg_sizeDetails" placeholder="Enter Width and Height of each window (Ex. 1=24&quot; 2=25&quot; 3=24&quot; etc.)"></textarea>
                     </div>
 
@@ -924,7 +1178,6 @@
                         otherField.style.display = 'block';
                     } else {
                         otherField.style.display = 'none';
-                        // Clear the other material field when hidden
                         document.getElementById('csp_otherMaterial').value = '';
                     }
                 });
@@ -1007,13 +1260,13 @@
                     <div class="form-group">
                         <label for="ntr_nsg_hasArtwork">Do you have a artwork? (Select One)</label>
                         <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
-                        <div style="margin-top: 5px;">
-                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
-                                <input type="radio" id="ntr_nsg_artwork_yes" name="ntr_nsg_hasArtwork" value="Yes" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_nsg_artwork_yes" name="ntr_nsg_hasArtwork" value="Yes">
                                 Yes
                             </label>
-                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
-                                <input type="radio" id="ntr_nsg_artwork_no" name="ntr_nsg_hasArtwork" value="No" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_nsg_artwork_no" name="ntr_nsg_hasArtwork" value="No">
                                 No
                             </label>
                         </div>
@@ -1033,13 +1286,13 @@
 
                     <div class="form-group">
                         <label for="ntr_sct_orderType">SCP Order Type</label>
-                        <div style="margin-top: 5px;">
-                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_design_consult" name="ntr_sct_orderType" value="Design Consult (No Scraper)" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_design_consult" name="ntr_sct_orderType" value="Design Consult (No Scraper)">
                                 Design Consult (No Scraper)
                             </label>
-                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_program_approval" name="ntr_sct_orderType" value="Program Approval (Scraper & Creative)" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_program_approval" name="ntr_sct_orderType" value="Program Approval (Scraper & Creative)">
                                 Program Approval (Scraper & Creative)
                             </label>
                         </div>
@@ -1047,21 +1300,21 @@
 
                     <div class="form-group">
                         <label for="ntr_sct_newCarCoverage">New Car Coverage</label>
-                        <div style="margin-top: 5px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_new_shortcut_pack" name="ntr_sct_newCarCoverage" value="ShortCut Pack" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group radio-vertical">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_new_shortcut_pack" name="ntr_sct_newCarCoverage" value="ShortCut Pack">
                                 ShortCut Pack
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_new_shortcut_only" name="ntr_sct_newCarCoverage" value="ShortCut ONLY" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_new_shortcut_only" name="ntr_sct_newCarCoverage" value="ShortCut ONLY">
                                 ShortCut ONLY
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_new_windshield_only" name="ntr_sct_newCarCoverage" value="Windshield ONLY" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_new_windshield_only" name="ntr_sct_newCarCoverage" value="Windshield ONLY">
                                 Windshield ONLY
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_new_none" name="ntr_sct_newCarCoverage" value="NONE" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_new_none" name="ntr_sct_newCarCoverage" value="NONE">
                                 NONE
                             </label>
                         </div>
@@ -1069,21 +1322,21 @@
 
                     <div class="form-group">
                         <label for="ntr_sct_usedCarCoverage">Used Car Coverage</label>
-                        <div style="margin-top: 5px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_used_shortcut_pack" name="ntr_sct_usedCarCoverage" value="ShortCut Pack" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group radio-vertical">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_used_shortcut_pack" name="ntr_sct_usedCarCoverage" value="ShortCut Pack">
                                 ShortCut Pack
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_used_shortcut_only" name="ntr_sct_usedCarCoverage" value="ShortCut ONLY" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_used_shortcut_only" name="ntr_sct_usedCarCoverage" value="ShortCut ONLY">
                                 ShortCut ONLY
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_used_windshield_only" name="ntr_sct_usedCarCoverage" value="Windshield ONLY" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_used_windshield_only" name="ntr_sct_usedCarCoverage" value="Windshield ONLY">
                                 Windshield ONLY
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_used_none" name="ntr_sct_usedCarCoverage" value="NONE" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_used_none" name="ntr_sct_usedCarCoverage" value="NONE">
                                 NONE
                             </label>
                         </div>
@@ -1091,21 +1344,21 @@
 
                     <div class="form-group">
                         <label for="ntr_sct_orderEntryMethod">Order Entry Method</label>
-                        <div style="margin-top: 5px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_lot_walk" name="ntr_sct_orderEntryMethod" value="Lot Walk/Manual Entry" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group radio-vertical">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_lot_walk" name="ntr_sct_orderEntryMethod" value="Lot Walk/Manual Entry">
                                 Lot Walk/Manual Entry
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_automated" name="ntr_sct_orderEntryMethod" value="Automated- Every Vehicle – Difference" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_automated" name="ntr_sct_orderEntryMethod" value="Automated- Every Vehicle – Difference">
                                 Automated- Every Vehicle – Difference
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_cx_provided" name="ntr_sct_orderEntryMethod" value="CX Provided List" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_cx_provided" name="ntr_sct_orderEntryMethod" value="CX Provided List">
                                 CX Provided List
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_other_entry" name="ntr_sct_orderEntryMethod" value="Other" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_other_entry" name="ntr_sct_orderEntryMethod" value="Other">
                                 Other
                             </label>
                         </div>
@@ -1113,21 +1366,21 @@
 
                     <div class="form-group">
                         <label for="ntr_sct_startupOrder">Startup order</label>
-                        <div style="margin-top: 5px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_full_coverage" name="ntr_sct_startupOrder" value="Full Coverage" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group radio-vertical">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_full_coverage" name="ntr_sct_startupOrder" value="Full Coverage">
                                 Full Coverage
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_transitional" name="ntr_sct_startupOrder" value="Transitional" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_transitional" name="ntr_sct_startupOrder" value="Transitional">
                                 Transitional
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_cx_provided_startup" name="ntr_sct_startupOrder" value="CX Provided List" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_cx_provided_startup" name="ntr_sct_startupOrder" value="CX Provided List">
                                 CX Provided List
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_other_startup" name="ntr_sct_startupOrder" value="Other" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_other_startup" name="ntr_sct_startupOrder" value="Other">
                                 Other
                             </label>
                         </div>
@@ -1135,21 +1388,21 @@
 
                     <div class="form-group">
                         <label for="ntr_sct_desiredShape">Desired Shape</label>
-                        <div style="margin-top: 5px;">
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_v1_rectangle" name="ntr_sct_desiredShape" value="V1 – Rectangle" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group radio-vertical">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_v1_rectangle" name="ntr_sct_desiredShape" value="V1 – Rectangle">
                                 V1 – Rectangle
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_v2_tanto" name="ntr_sct_desiredShape" value="V2 – Tanto" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_v2_tanto" name="ntr_sct_desiredShape" value="V2 – Tanto">
                                 V2 – Tanto
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_v3_pennant" name="ntr_sct_desiredShape" value="V3 – Pennant" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_v3_pennant" name="ntr_sct_desiredShape" value="V3 – Pennant">
                                 V3 – Pennant
                             </label>
-                            <label style="display: block; margin-bottom: 5px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_no_preference" name="ntr_sct_desiredShape" value="No Preference" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_no_preference" name="ntr_sct_desiredShape" value="No Preference">
                                 No Preference
                             </label>
                         </div>
@@ -1164,13 +1417,13 @@
                     <div class="form-group">
                         <label for="ntr_sct_hasArtwork">Do you have a artwork? (Select One)</label>
                         <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
-                        <div style="margin-top: 5px;">
-                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_artwork_yes" name="ntr_sct_hasArtwork" value="Yes" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_artwork_yes" name="ntr_sct_hasArtwork" value="Yes">
                                 Yes
                             </label>
-                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
-                                <input type="radio" id="ntr_sct_artwork_no" name="ntr_sct_hasArtwork" value="No" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_sct_artwork_no" name="ntr_sct_hasArtwork" value="No">
                                 No
                             </label>
                         </div>
@@ -1197,13 +1450,13 @@
                     <div class="form-group">
                         <label for="ntr_ft_hasArtwork">Do you have a artwork? (Select One)</label>
                         <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
-                        <div style="margin-top: 5px;">
-                            <label style="display: inline-flex; align-items: center; margin-right: 20px; font-weight: normal;">
-                                <input type="radio" id="ntr_ft_artwork_yes" name="ntr_ft_hasArtwork" value="Yes" style="margin-right: 5px; width: auto;">
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_ft_artwork_yes" name="ntr_ft_hasArtwork" value="Yes">
                                 Yes
                             </label>
-                            <label style="display: inline-flex; align-items: center; font-weight: normal;">
-                                <input type="radio" id="ntr_ft_artwork_no" name="ntr_ft_hasArtwork" value="No" style="margin-right: 5px; width: auto;">
+                            <label class="radio-option">
+                                <input type="radio" id="ntr_ft_artwork_no" name="ntr_ft_hasArtwork" value="No">
                                 No
                             </label>
                         </div>
@@ -1273,7 +1526,7 @@
 
             generateOrderSummary() {
                 const formData = new FormData(document.getElementById('orderForm'));
-                let summary = '**SILVER FOX MARKETING STL - ORDER DETAILS**\n\n';
+                let summary = '';
 
                 // Basic Order Information
                 const orderType = formData.get('orderType');
@@ -1510,8 +1763,6 @@
                     }
                 }
 
-                summary += '\n---\n*Generated by Silver Fox Marketing Order Form Tool*';
-
                 document.getElementById('outputText').value = summary;
             }
 
@@ -1523,11 +1774,11 @@
                 if (navigator.clipboard && window.isSecureContext) {
                     navigator.clipboard.writeText(outputText.value).then(() => {
                         button.textContent = '✓ Copied!';
-                        button.style.backgroundColor = '#4CAF50';
+                        button.classList.add('success');
                         
                         setTimeout(() => {
                             button.textContent = originalText;
-                            button.style.backgroundColor = '#333';
+                            button.classList.remove('success');
                         }, 2000);
                     });
                 } else {
@@ -1537,11 +1788,11 @@
                     try {
                         document.execCommand('copy');
                         button.textContent = '✓ Copied!';
-                        button.style.backgroundColor = '#4CAF50';
+                        button.classList.add('success');
                         
                         setTimeout(() => {
                             button.textContent = originalText;
-                            button.style.backgroundColor = '#333';
+                            button.classList.remove('success');
                         }, 2000);
                     } catch (err) {
                         console.error('Failed to copy text: ', err);
@@ -1550,8 +1801,364 @@
             }
         }
 
+        // Auto-save functionality class
+        class AutoSave {
+            constructor(formId, saveInterval = 5000) {
+                this.formId = formId;
+                this.saveInterval = saveInterval;
+                this.storageKey = `${formId}_draft`;
+                this.lastSaveTime = 0;
+                this.saveTimeout = null;
+                this.indicator = document.getElementById('autosaveIndicator');
+                this.indicatorText = document.getElementById('autosaveText');
+                
+                this.init();
+            }
+
+            init() {
+                this.checkForDraft();
+                this.setupEventListeners();
+                this.setupDraftHandlers();
+            }
+
+            setupEventListeners() {
+                const form = document.getElementById(this.formId);
+                if (!form) return;
+
+                form.addEventListener('input', (e) => {
+                    this.debouncedSave();
+                });
+
+                form.addEventListener('change', (e) => {
+                    this.debouncedSave();
+                });
+
+                window.addEventListener('beforeunload', (e) => {
+                    this.saveDraft(true);
+                });
+
+                setInterval(() => {
+                    if (this.hasUnsavedChanges()) {
+                        this.saveDraft();
+                    }
+                }, this.saveInterval);
+            }
+
+            setupDraftHandlers() {
+                const restoreBtn = document.getElementById('restoreDraftBtn');
+                const dismissBtn = document.getElementById('dismissDraftBtn');
+
+                if (restoreBtn) {
+                    restoreBtn.addEventListener('click', () => {
+                        this.restoreDraft();
+                    });
+                }
+
+                if (dismissBtn) {
+                    dismissBtn.addEventListener('click', () => {
+                        this.dismissDraft();
+                    });
+                }
+            }
+
+            debouncedSave() {
+                if (this.saveTimeout) {
+                    clearTimeout(this.saveTimeout);
+                }
+
+                this.saveTimeout = setTimeout(() => {
+                    this.saveDraft();
+                }, 2000);
+            }
+
+            hasUnsavedChanges() {
+                const currentData = this.getFormData();
+                const savedData = this.getSavedDraft();
+                
+                if (!savedData) return Object.keys(currentData).length > 0;
+                
+                return JSON.stringify(currentData) !== JSON.stringify(savedData.data);
+            }
+
+            getFormData() {
+                const form = document.getElementById(this.formId);
+                if (!form) return {};
+
+                const data = {};
+
+                // Get all form inputs including text, select, textarea
+                const formData = new FormData(form);
+                for (let [key, value] of formData.entries()) {
+                    if (value && value.trim() !== '') {
+                        data[key] = value;
+                    }
+                }
+
+                // Specifically handle radio buttons (FormData might miss some)
+                const radioButtons = form.querySelectorAll('input[type="radio"]:checked');
+                radioButtons.forEach(radio => {
+                    data[radio.name] = radio.value;
+                });
+
+                // Handle checkboxes
+                const checkboxes = form.querySelectorAll('input[type="checkbox"]');
+                checkboxes.forEach(checkbox => {
+                    data[checkbox.name] = checkbox.checked;
+                });
+
+                // Also capture all text inputs, selects, and textareas individually to ensure nothing is missed
+                const allInputs = form.querySelectorAll('input[type="text"], input[type="url"], select, textarea');
+                allInputs.forEach(input => {
+                    if (input.value && input.value.trim() !== '') {
+                        data[input.name] = input.value;
+                    }
+                });
+
+                return data;
+            }
+
+            saveDraft(force = false) {
+                const data = this.getFormData();
+                
+                if (Object.keys(data).length === 0) return;
+                if (!force && Date.now() - this.lastSaveTime < 1000) return;
+
+                try {
+                    this.showSaveIndicator('saving');
+
+                    const draftData = {
+                        data: data,
+                        timestamp: Date.now(),
+                        version: '1.0'
+                    };
+
+                    localStorage.setItem(this.storageKey, JSON.stringify(draftData));
+                    this.lastSaveTime = Date.now();
+                    
+                    this.showSaveIndicator('saved');
+                } catch (error) {
+                    console.error('Failed to save draft:', error);
+                    this.showSaveIndicator('error');
+                }
+            }
+
+            getSavedDraft() {
+                try {
+                    const saved = localStorage.getItem(this.storageKey);
+                    return saved ? JSON.parse(saved) : null;
+                } catch (error) {
+                    console.error('Failed to retrieve draft:', error);
+                    return null;
+                }
+            }
+
+            checkForDraft() {
+                const draft = this.getSavedDraft();
+                
+                if (draft && this.isDraftValid(draft)) {
+                    this.showDraftNotification(draft);
+                }
+            }
+
+            isDraftValid(draft) {
+                const maxAge = 7 * 24 * 60 * 60 * 1000; // 7 days
+                const age = Date.now() - draft.timestamp;
+                
+                return age < maxAge && Object.keys(draft.data).length > 0;
+            }
+
+            showDraftNotification(draft) {
+                const notification = document.getElementById('draftNotification');
+                const timestamp = document.getElementById('draftTimestamp');
+                
+                if (notification && timestamp) {
+                    const date = new Date(draft.timestamp);
+                    timestamp.textContent = date.toLocaleString();
+                    notification.style.display = 'block';
+                }
+            }
+
+            restoreDraft() {
+                const draft = this.getSavedDraft();
+                
+                if (draft && draft.data) {
+                    // First restore the basic form data
+                    this.populateForm(draft.data);
+                    this.hideDraftNotification();
+                    this.showSaveIndicator('saved');
+                    
+                    // Then rebuild all conditional sections based on saved data
+                    this.rebuildConditionalSections(draft.data);
+                }
+            }
+
+            rebuildConditionalSections(data) {
+                // Get reference to the main form engine
+                const formEngine = window.orderFormEngine;
+                if (!formEngine) return;
+
+                // Step 1: Rebuild order type section if needed
+                if (data.orderType) {
+                    const orderTypeSelect = document.getElementById('orderType');
+                    if (orderTypeSelect) {
+                        orderTypeSelect.value = data.orderType;
+                        formEngine.handleOrderTypeChange(data.orderType);
+                        
+                        // Wait for the section to be created, then populate nested fields
+                        setTimeout(() => {
+                            this.populateNestedFields(data);
+                        }, 200);
+                    }
+                }
+            }
+
+            populateNestedFields(data) {
+                // Handle Vehicle Merchandising nested fields
+                if (data.orderType === 'Vehicle Merchandising' && data.vm_productType) {
+                    const vmProductSelect = document.getElementById('vm_productType');
+                    if (vmProductSelect) {
+                        vmProductSelect.value = data.vm_productType;
+                        vmProductSelect.dispatchEvent(new Event('change'));
+                    }
+                }
+
+                // Handle Dealership Merchandising nested fields
+                if (data.orderType === 'Dealership Merchandising' && data.dm_productType) {
+                    const dmProductSelect = document.getElementById('dm_productType');
+                    if (dmProductSelect) {
+                        dmProductSelect.value = data.dm_productType;
+                        dmProductSelect.dispatchEvent(new Event('change'));
+                    }
+                }
+
+                // Handle Custom Special Products conditional field
+                if (data.orderType === 'Custom Special Products' && data.csp_materialType) {
+                    const cspMaterialSelect = document.getElementById('csp_materialType');
+                    if (cspMaterialSelect) {
+                        cspMaterialSelect.value = data.csp_materialType;
+                        cspMaterialSelect.dispatchEvent(new Event('change'));
+                    }
+                }
+
+                // Handle New Template Request nested fields
+                if (data.orderType === 'New Template Request' && data.ntr_requestType) {
+                    const ntrRequestSelect = document.getElementById('ntr_requestType');
+                    if (ntrRequestSelect) {
+                        ntrRequestSelect.value = data.ntr_requestType;
+                        ntrRequestSelect.dispatchEvent(new Event('change'));
+                    }
+                }
+
+                // Wait for all nested sections to load, then populate all fields
+                setTimeout(() => {
+                    this.populateAllFields(data);
+                }, 300);
+            }
+
+            populateAllFields(data) {
+                // Populate all form fields including those in conditional sections
+                Object.keys(data).forEach(key => {
+                    const field = document.querySelector(`[name="${key}"]`);
+                    if (field) {
+                        if (field.type === 'radio') {
+                            const radioOption = document.querySelector(`[name="${key}"][value="${data[key]}"]`);
+                            if (radioOption) {
+                                radioOption.checked = true;
+                            }
+                        } else if (field.type === 'checkbox') {
+                            field.checked = data[key] === 'true' || data[key] === true;
+                        } else {
+                            field.value = data[key];
+                        }
+                    }
+                });
+
+                // Trigger form update to refresh the order summary
+                const formEngine = window.orderFormEngine;
+                if (formEngine) {
+                    formEngine.generateOrderSummary();
+                }
+            }
+
+            populateForm(data) {
+                const form = document.getElementById(this.formId);
+                if (!form) return;
+
+                Object.keys(data).forEach(key => {
+                    const field = form.querySelector(`[name="${key}"]`);
+                    if (field) {
+                        if (field.type === 'radio') {
+                            const radioOption = form.querySelector(`[name="${key}"][value="${data[key]}"]`);
+                            if (radioOption) radioOption.checked = true;
+                        } else {
+                            field.value = data[key];
+                        }
+                    }
+                });
+            }
+
+            dismissDraft() {
+                this.clearDraft();
+                this.hideDraftNotification();
+            }
+
+            hideDraftNotification() {
+                const notification = document.getElementById('draftNotification');
+                if (notification) {
+                    notification.style.display = 'none';
+                }
+            }
+
+            clearDraft() {
+                try {
+                    localStorage.removeItem(this.storageKey);
+                } catch (error) {
+                    console.error('Failed to clear draft:', error);
+                }
+            }
+
+            showSaveIndicator(status) {
+                if (!this.indicator || !this.indicatorText) return;
+
+                if (this.indicatorTimeout) {
+                    clearTimeout(this.indicatorTimeout);
+                }
+
+                switch (status) {
+                    case 'saving':
+                        this.indicatorText.textContent = '💾 Saving...';
+                        this.indicator.className = 'autosave-indicator saving show';
+                        break;
+                    case 'saved':
+                        this.indicatorText.textContent = '✅ Saved';
+                        this.indicator.className = 'autosave-indicator saved show';
+                        break;
+                    case 'error':
+                        this.indicatorText.textContent = '❌ Save failed';
+                        this.indicator.className = 'autosave-indicator error show';
+                        break;
+                }
+
+                if (status !== 'error') {
+                    this.indicatorTimeout = setTimeout(() => {
+                        this.indicator.classList.remove('show');
+                    }, 2000);
+                } else {
+                    this.indicatorTimeout = setTimeout(() => {
+                        this.indicator.classList.remove('show');
+                    }, 5000);
+                }
+            }
+
+            onFormSubmitted() {
+                this.clearDraft();
+                this.showSaveIndicator('saved');
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            new OrderFormEngine();
+            // Make the OrderFormEngine globally accessible for draft restoration
+            window.orderFormEngine = new OrderFormEngine();
         });
     </script>
 </body>
