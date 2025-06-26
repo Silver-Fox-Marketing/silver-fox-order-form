@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -660,6 +658,7 @@
                                 <option value="Custom Special Products">Custom Special Products</option>
                                 <option value="New Template Request">New Template Request</option>
                                 <option value="Business Cards">Business Cards</option>
+                                <option value="Custom Banners">Custom Banners</option>
                             </select>
                         </div>
                     </fieldset>
@@ -760,6 +759,9 @@
                         break;
                     case 'Business Cards':
                         this.createBusinessCardsSection(container);
+                        break;
+                    case 'Custom Banners':
+                        this.createCustomBannersSection(container);
                         break;
                 }
             }
@@ -991,7 +993,6 @@
                         <label for="dm_productType">Product Type</label>
                         <select id="dm_productType" name="dm_productType">
                             <option value="">Please Select:</option>
-                            <option value="Custom Designed Pole Banners">Custom Designed Pole Banners</option>
                             <option value="Custom Designed Interior Showroom Graphics">Custom Designed Interior Showroom Graphics</option>
                             <option value="Custom Designed Showroom Graphics">Custom Designed Showroom Graphics</option>
                         </select>
@@ -1017,9 +1018,6 @@
                 let nestedSection;
 
                 switch (productType) {
-                    case 'Custom Designed Pole Banners':
-                        nestedSection = this.createPoleBannersFields();
-                        break;
                     case 'Custom Designed Interior Showroom Graphics':
                         nestedSection = this.createInteriorShowroomGraphicsFields();
                         break;
@@ -1032,40 +1030,6 @@
                     container.appendChild(nestedSection);
                     this.animateNestedIn(nestedSection);
                 }
-            }
-
-            createPoleBannersFields() {
-                const section = document.createElement('div');
-                section.className = 'nested-conditional-fields';
-                section.innerHTML = `
-                    <div class="form-group">
-                        <label for="dm_pb_materialType">Material Type</label>
-                        <select id="dm_pb_materialType" name="dm_pb_materialType">
-                            <option value="">Please Select:</option>
-                            <option value="Banner Material - 13oz">Banner Material - 13oz</option>
-                            <option value="Banner Material - 18oz">Banner Material - 18oz</option>
-                            <option value="Mesh Banner Material">Mesh Banner Material</option>
-                            <option value="Vinyl Banner">Vinyl Banner</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dm_pb_dimensions">Dimensions</label>
-                        <input type="text" id="dm_pb_dimensions" name="dm_pb_dimensions" placeholder="e.g., 24&quot; x 36&quot;">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dm_pb_text">Text</label>
-                        <textarea id="dm_pb_text" name="dm_pb_text" placeholder="Enter banner text..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="dm_pb_designDetails">Design/Layout Details</label>
-                        <textarea id="dm_pb_designDetails" name="dm_pb_designDetails" placeholder="Describe design requirements, layout preferences, colors, etc..."></textarea>
-                    </div>
-                `;
-                return section;
             }
 
             createInteriorShowroomGraphicsFields() {
@@ -1390,21 +1354,6 @@
                         <small>Color Schemes, References to Design Styles, Anything else we need to know</small>
                         <textarea id="ntr_nsg_details" name="ntr_nsg_details" placeholder="Color Schemes, References to Design Styles, Anything else we need to know"></textarea>
                     </div>
-
-                    <div class="form-group">
-                        <label for="ntr_nsg_hasArtwork">Do you have a artwork? (Select One)</label>
-                        <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" id="ntr_nsg_artwork_yes" name="ntr_nsg_hasArtwork" value="Yes">
-                                Yes
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" id="ntr_nsg_artwork_no" name="ntr_nsg_hasArtwork" value="No">
-                                No
-                            </label>
-                        </div>
-                    </div>
                 `;
                 return section;
             }
@@ -1547,21 +1496,6 @@
                         <small>Color Schemes, References to Design Styles, Anything else we need to know</small>
                         <textarea id="ntr_sct_details" name="ntr_sct_details" placeholder="Color Schemes, References to Design Styles, Anything else we need to know"></textarea>
                     </div>
-
-                    <div class="form-group">
-                        <label for="ntr_sct_hasArtwork">Do you have a artwork? (Select One)</label>
-                        <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" id="ntr_sct_artwork_yes" name="ntr_sct_hasArtwork" value="Yes">
-                                Yes
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" id="ntr_sct_artwork_no" name="ntr_sct_hasArtwork" value="No">
-                                No
-                            </label>
-                        </div>
-                    </div>
                 `;
                 return section;
             }
@@ -1580,21 +1514,6 @@
                         <small>Color Schemes, References to Design Styles, Anything else we need to know</small>
                         <textarea id="ntr_ft_details" name="ntr_ft_details" placeholder="Color Schemes, References to Design Styles, Anything else we need to know"></textarea>
                     </div>
-
-                    <div class="form-group">
-                        <label for="ntr_ft_hasArtwork">Do you have a artwork? (Select One)</label>
-                        <small>(Only .jpg, .png, .pdf, .eps, .ai, .gif, .tiff, .psd, .doc, and .docx Files are accepted. PSD, AI, or EPS file types preferred)</small>
-                        <div class="radio-group">
-                            <label class="radio-option">
-                                <input type="radio" id="ntr_ft_artwork_yes" name="ntr_ft_hasArtwork" value="Yes">
-                                Yes
-                            </label>
-                            <label class="radio-option">
-                                <input type="radio" id="ntr_ft_artwork_no" name="ntr_ft_hasArtwork" value="No">
-                                No
-                            </label>
-                        </div>
-                    </div>
                 `;
                 return section;
             }
@@ -1604,12 +1523,6 @@
                 section.className = 'conditional-section';
                 section.innerHTML = `
                     <legend>Business Cards Details</legend>
-                    
-                    <div class="form-group">
-                        <label for="bc_quotedPrice">*Quoted Price</label>
-                        <small>(Material + Design Setup + Install)</small>
-                        <input type="text" id="bc_quotedPrice" name="bc_quotedPrice" placeholder="Enter quoted price...">
-                    </div>
                     
                     <div class="form-group">
                         <label for="bc_singleOrDouble">Single or Double Sided</label>
@@ -1645,6 +1558,239 @@
                 container.appendChild(section);
                 this.animateIn(section);
             }
+
+            createCustomBannersSection(container) {
+    const section = document.createElement('fieldset');
+    section.className = 'conditional-section';
+    section.innerHTML = `
+        <legend>Custom Banners Details</legend>
+        
+        <div class="form-group">
+            <label for="cb_bannerType">*Banner Type</label>
+            <select id="cb_bannerType" name="cb_bannerType" required>
+                <option value="">Please Select</option>
+                <option value="Standard Banner">Standard Banner</option>
+                <option value="Pole Banner">Pole Banner</option>
+            </select>
+        </div>
+
+        <div id="cb_nestedFields"></div>
+    `;
+    
+    container.appendChild(section);
+    this.animateIn(section);
+
+    document.getElementById('cb_bannerType').addEventListener('change', (e) => {
+        this.handleCustomBannerType(e.target.value);
+    });
+}
+
+handleCustomBannerType(bannerType) {
+    const container = document.getElementById('cb_nestedFields');
+    container.innerHTML = '';
+
+    if (!bannerType) return;
+
+    let nestedSection;
+
+    switch (bannerType) {
+        case 'Standard Banner':
+            nestedSection = this.createStandardBannerFields();
+            break;
+        case 'Pole Banner':
+            nestedSection = this.createPoleBannerFields();
+            break;
+        case 'Banner Stand/Display':
+            nestedSection = this.createBannerStandFields();
+            break;
+    }
+
+    if (nestedSection) {
+        container.appendChild(nestedSection);
+        this.animateNestedIn(nestedSection);
+    }
+}
+
+createStandardBannerFields() {
+    const section = document.createElement('div');
+    section.className = 'nested-conditional-fields';
+    section.innerHTML = `
+        <div class="form-group">
+            <label for="cb_sb_materialType">Material Type</label>
+            <select id="cb_sb_materialType" name="cb_sb_materialType">
+                <option value="">Please Select:</option>
+                <option value="13oz Banner">13oz Banner</option>
+                <option value="18oz Banner">18oz Banner</option>
+                <option value="Mesh Banner">Mesh Banner</option>
+                <option value="No-Curl/Grey Back Banner">No-Curl/Grey Back Banner</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cb_sb_width">Width</label>
+            <input type="text" id="cb_sb_width" name="cb_sb_width" placeholder="Enter width...">
+        </div>
+
+        <div class="form-group">
+            <label for="cb_sb_height">Height</label>
+            <input type="text" id="cb_sb_height" name="cb_sb_height" placeholder="Enter height...">
+        </div>
+
+        <div class="form-group">
+            <label for="cb_sb_designNotes">Design Notes</label>
+            <textarea id="cb_sb_designNotes" name="cb_sb_designNotes" placeholder="Enter design notes..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="cb_sb_finishing">*Finishing</label>
+            <select id="cb_sb_finishing" name="cb_sb_finishing" required>
+                <option value="">Please Select</option>
+                <option value="Standard 1&quot; Hems">Standard 1" Hems</option>
+                <option value="Double Stick Edges (No Hems)">Double Stick Edges (No Hems)</option>
+                <option value="Trimmed to Size (No Hems)">Trimmed to Size (No Hems)</option>
+                <option value="Sewn Hems with Webbing">Sewn Hems with Webbing</option>
+                <option value="Other/Custom">Other/Custom</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cb_sb_grommets">Grommets</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" id="cb_sb_grommets_yes" name="cb_sb_grommets" value="Yes">
+                    Yes
+                </label>
+                <label class="radio-option">
+                    <input type="radio" id="cb_sb_grommets_no" name="cb_sb_grommets" value="No">
+                    No
+                </label>
+            </div>
+        </div>
+
+        <div id="cb_sb_grommetFields" style="display: none;">
+            <div class="form-group">
+                <label for="cb_sb_grommetPattern">*Grommet Pattern</label>
+                <select id="cb_sb_grommetPattern" name="cb_sb_grommetPattern">
+                    <option value="">Please Select:</option>
+                    <option value="3 Pole Mounting (Corners & Middle)">3 Pole Mounting (Corners & Middle)</option>
+                    <option value="4 Pole Mounting (Corners & 2 Interior)">4 Pole Mounting (Corners & 2 Interior)</option>
+                    <option value="Corners Only">Corners Only</option>
+                    <option value='Every 12" (Approximate)'>Every 12" (Approximate)</option>
+                    <option value='Every 24" (Approximate)'>Every 24" (Approximate)</option>
+                    <option value="Custom">Custom</option>
+                </select>
+            </div>
+        </div>
+    `;
+
+    // Add conditional logic for grommet fields
+    setTimeout(() => {
+        const grommetRadios = section.querySelectorAll('input[name="cb_sb_grommets"]');
+        grommetRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const grommetFields = section.querySelector('#cb_sb_grommetFields');
+                if (e.target.value === 'Yes') {
+                    grommetFields.style.display = 'block';
+                } else {
+                    grommetFields.style.display = 'none';
+                    section.querySelector('#cb_sb_grommetPattern').value = '';
+                }
+            });
+        });
+    }, 100);
+
+    return section;
+}
+
+createPoleBannerFields() {
+    const section = document.createElement('div');
+    section.className = 'nested-conditional-fields';
+    section.innerHTML = `
+        <div class="form-group">
+            <label for="cb_pb_width">Width</label>
+            <input type="text" id="cb_pb_width" name="cb_pb_width" placeholder="Enter width...">
+        </div>
+
+        <div class="form-group">
+            <label for="cb_pb_height">Height</label>
+            <input type="text" id="cb_pb_height" name="cb_pb_height" placeholder="Enter height...">
+        </div>
+
+        <div class="form-group">
+            <label for="cb_pb_pocketSize">Pocket Size</label>
+            <textarea id="cb_pb_pocketSize" name="cb_pb_pocketSize" placeholder="Enter pocket size details..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="cb_pb_needBracket">Do you need Pole Bracket Hardware?</label>
+            <div class="radio-group">
+                <label class="radio-option">
+                    <input type="radio" id="cb_pb_bracket_yes" name="cb_pb_needBracket" value="Yes">
+                    Yes
+                </label>
+                <label class="radio-option">
+                    <input type="radio" id="cb_pb_bracket_no" name="cb_pb_needBracket" value="No">
+                    No
+                </label>
+            </div>
+        </div>
+
+        <div id="cb_pb_bracketFields" style="display: none;">
+            <div class="form-group">
+                <label for="cb_pb_bracketType">Bracket Type</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" id="cb_pb_single_sided" name="cb_pb_bracketType" value="Single Sided Pole Bracket">
+                        Single Sided Pole Bracket
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" id="cb_pb_double_sided" name="cb_pb_bracketType" value="Double Sided Pole Bracket">
+                        Double Sided Pole Bracket
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="cb_pb_materialType">Material Type</label>
+            <select id="cb_pb_materialType" name="cb_pb_materialType">
+                <option value="">Please Select:</option>
+                <option value="13oz Banner">13oz Banner</option>
+                <option value="18oz Banner">18oz Banner</option>
+                <option value="Mesh Banner">Mesh Banner</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="cb_pb_side1Design">Side 1 Design/Layout Details</label>
+            <textarea id="cb_pb_side1Design" name="cb_pb_side1Design" placeholder="Enter side 1 design details..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="cb_pb_side2Design">Side 2 Design/Layout Details</label>
+            <textarea id="cb_pb_side2Design" name="cb_pb_side2Design" placeholder="Enter side 2 design details..."></textarea>
+        </div>
+    `;
+
+    // Add conditional logic for bracket fields
+    setTimeout(() => {
+        const bracketRadios = section.querySelectorAll('input[name="cb_pb_needBracket"]');
+        bracketRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                const bracketFields = section.querySelector('#cb_pb_bracketFields');
+                if (e.target.value === 'Yes') {
+                    bracketFields.style.display = 'block';
+                } else {
+                    bracketFields.style.display = 'none';
+                    const bracketTypeRadios = section.querySelectorAll('input[name="cb_pb_bracketType"]');
+                    bracketTypeRadios.forEach(radio => radio.checked = false);
+                }
+            });
+        });
+    }, 100);
+
+    return section;
+}
 
             animateIn(element) {
                 setTimeout(() => {
@@ -1736,17 +1882,6 @@
                                 summary += `PRODUCT TYPE: ${dmProductType}\n`;
                                 
                                 switch (dmProductType) {
-                                    case 'Custom Designed Pole Banners':
-                                        const pbMaterial = formData.get('dm_pb_materialType');
-                                        const pbDimensions = formData.get('dm_pb_dimensions');
-                                        const pbText = formData.get('dm_pb_text');
-                                        const pbDesign = formData.get('dm_pb_designDetails');
-                                        
-                                        if (pbMaterial) summary += `MATERIAL: ${pbMaterial}\n`;
-                                        if (pbDimensions) summary += `DIMENSIONS: ${pbDimensions}\n`;
-                                        if (pbText) summary += `TEXT: ${pbText}\n`;
-                                        if (pbDesign) summary += `DESIGN DETAILS: ${pbDesign}\n`;
-                                        break;
                                         
                                     case 'Custom Designed Interior Showroom Graphics':
                                         const isgSurface = formData.get('dm_isg_surfaceType');
@@ -1835,12 +1970,9 @@
                                     case 'New Standard Graphic':
                                         const nsgTemplateName = formData.get('ntr_nsg_templateName');
                                         const nsgDetails = formData.get('ntr_nsg_details');
-                                        const nsgHasArtwork = formData.get('ntr_nsg_hasArtwork');
                                         
                                         if (nsgTemplateName) summary += `TEMPLATE NAME: ${nsgTemplateName}\n`;
                                         if (nsgDetails) summary += `DETAILS: ${nsgDetails}\n`;
-                                        if (nsgHasArtwork) summary += `HAS ARTWORK: ${nsgHasArtwork}\n`;
-                                        break;
                                         
                                     case 'ShortCut Template':
                                         const sctTemplateName = formData.get('ntr_sct_templateName');
@@ -1851,7 +1983,6 @@
                                         const sctStartupOrder = formData.get('ntr_sct_startupOrder');
                                         const sctDesiredShape = formData.get('ntr_sct_desiredShape');
                                         const sctDetails = formData.get('ntr_sct_details');
-                                        const sctHasArtwork = formData.get('ntr_sct_hasArtwork');
                                         
                                         if (sctTemplateName) summary += `TEMPLATE NAME: ${sctTemplateName}\n`;
                                         if (sctOrderType) summary += `SCP ORDER TYPE: ${sctOrderType}\n`;
@@ -1861,37 +1992,87 @@
                                         if (sctStartupOrder) summary += `STARTUP ORDER: ${sctStartupOrder}\n`;
                                         if (sctDesiredShape) summary += `DESIRED SHAPE: ${sctDesiredShape}\n`;
                                         if (sctDetails) summary += `DETAILS: ${sctDetails}\n`;
-                                        if (sctHasArtwork) summary += `HAS ARTWORK: ${sctHasArtwork}\n`;
                                         break;
                                         
                                     case 'Flyout Template':
                                         const ftTemplateName = formData.get('ntr_ft_templateName');
                                         const ftDetails = formData.get('ntr_ft_details');
-                                        const ftHasArtwork = formData.get('ntr_ft_hasArtwork');
                                         
                                         if (ftTemplateName) summary += `TEMPLATE NAME: ${ftTemplateName}\n`;
                                         if (ftDetails) summary += `DETAILS: ${ftDetails}\n`;
-                                        if (ftHasArtwork) summary += `HAS ARTWORK: ${ftHasArtwork}\n`;
-                                        break;
                                 }
                                 summary += '\n';
                             }
                             break;
 
                         case 'Business Cards':
-                            const bcQuotedPrice = formData.get('bc_quotedPrice');
                             const bcSingleOrDouble = formData.get('bc_singleOrDouble');
                             const bcQuantity = formData.get('bc_quantity');
                             const bcText = formData.get('bc_text');
                             const bcDescription = formData.get('bc_description');
                             
-                            if (bcQuotedPrice) summary += `QUOTED PRICE: ${bcQuotedPrice}\n`;
                             if (bcSingleOrDouble) summary += `SINGLE OR DOUBLE SIDED: ${bcSingleOrDouble}\n`;
                             if (bcQuantity) summary += `QUANTITY: ${bcQuantity}\n`;
                             if (bcText) summary += `TEXT: ${bcText}\n`;
                             if (bcDescription) summary += `DESCRIPTION: ${bcDescription}\n`;
                             summary += '\n';
                             break;
+
+                        case 'Custom Banners':
+    const cbBannerType = formData.get('cb_bannerType');
+    if (cbBannerType) {
+        summary += `BANNER TYPE: ${cbBannerType}\n`;
+        
+        switch (cbBannerType) {
+            case 'Standard Banner':
+                const sbMaterial = formData.get('cb_sb_materialType');
+                const sbWidth = formData.get('cb_sb_width');
+                const sbHeight = formData.get('cb_sb_height');
+                const sbDesign = formData.get('cb_sb_designNotes');
+                const sbFinishing = formData.get('cb_sb_finishing');
+                const sbGrommets = formData.get('cb_sb_grommets');
+                const sbGrommetPattern = formData.get('cb_sb_grommetPattern');
+                
+                if (sbMaterial) summary += `MATERIAL TYPE: ${sbMaterial}\n`;
+                if (sbWidth) summary += `WIDTH: ${sbWidth}\n`;
+                if (sbHeight) summary += `HEIGHT: ${sbHeight}\n`;
+                if (sbDesign) summary += `DESIGN NOTES: ${sbDesign}\n`;
+                if (sbFinishing) summary += `FINISHING: ${sbFinishing}\n`;
+                if (sbGrommets) {
+                    summary += `GROMMETS: ${sbGrommets}\n`;
+                    if (sbGrommets === 'Yes' && sbGrommetPattern) {
+                        summary += `GROMMET PATTERN: ${sbGrommetPattern}\n`;
+                    }
+                }
+                break;
+                
+            case 'Pole Banner':
+                const pbWidth = formData.get('cb_pb_width');
+                const pbHeight = formData.get('cb_pb_height');
+                const pbPocket = formData.get('cb_pb_pocketSize');
+                const pbNeedBracket = formData.get('cb_pb_needBracket');
+                const pbBracketType = formData.get('cb_pb_bracketType');
+                const pbMaterial = formData.get('cb_pb_materialType');
+                const pbSide1 = formData.get('cb_pb_side1Design');
+                const pbSide2 = formData.get('cb_pb_side2Design');
+                
+                if (pbWidth) summary += `WIDTH: ${pbWidth}\n`;
+                if (pbHeight) summary += `HEIGHT: ${pbHeight}\n`;
+                if (pbPocket) summary += `POCKET SIZE: ${pbPocket}\n`;
+                if (pbNeedBracket) {
+                    summary += `NEED POLE BRACKET HARDWARE: ${pbNeedBracket}\n`;
+                    if (pbNeedBracket === 'Yes' && pbBracketType) {
+                        summary += `BRACKET TYPE: ${pbBracketType}\n`;
+                    }
+                }
+                if (pbMaterial) summary += `MATERIAL TYPE: ${pbMaterial}\n`;
+                if (pbSide1) summary += `SIDE 1 DESIGN: ${pbSide1}\n`;
+                if (pbSide2) summary += `SIDE 2 DESIGN: ${pbSide2}\n`;
+                break;
+        }
+        summary += '\n';
+    }
+    break;
                     }
                 }
 
