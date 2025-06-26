@@ -1689,23 +1689,49 @@ createStandardBannerFields() {
                 </select>
             </div>
         </div>
+        <div id="cb_sb_customGrommetField" style="display: none;">
+    <div class="form-group">
+        <label for="cb_sb_customGrommet">Custom Grommet Pattern Description</label>
+        <input type="text" id="cb_sb_customGrommet" name="cb_sb_customGrommet" placeholder="Describe custom grommet pattern...">
+    </div>
+</div>
     `;
 
     // Add conditional logic for grommet fields
-    setTimeout(() => {
-        const grommetRadios = section.querySelectorAll('input[name="cb_sb_grommets"]');
-        grommetRadios.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                const grommetFields = section.querySelector('#cb_sb_grommetFields');
-                if (e.target.value === 'Yes') {
-                    grommetFields.style.display = 'block';
-                } else {
-                    grommetFields.style.display = 'none';
-                    section.querySelector('#cb_sb_grommetPattern').value = '';
-                }
-            });
+    // Add conditional logic for grommet fields
+setTimeout(() => {
+    const grommetRadios = section.querySelectorAll('input[name="cb_sb_grommets"]');
+    const grommetPatternSelect = section.querySelector('#cb_sb_grommetPattern');
+    
+    grommetRadios.forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            const grommetFields = section.querySelector('#cb_sb_grommetFields');
+            const customGrommetField = section.querySelector('#cb_sb_customGrommetField');
+            
+            if (e.target.value === 'Yes') {
+                grommetFields.style.display = 'block';
+            } else {
+                grommetFields.style.display = 'none';
+                grommetPatternSelect.value = '';
+                customGrommetField.style.display = 'none';
+                section.querySelector('#cb_sb_customGrommet').value = '';
+            }
         });
-    }, 100);
+    });
+
+    // Add event listener for custom grommet pattern
+    if (grommetPatternSelect) {
+        grommetPatternSelect.addEventListener('change', (e) => {
+            const customGrommetField = section.querySelector('#cb_sb_customGrommetField');
+            if (e.target.value === 'Custom') {
+                customGrommetField.style.display = 'block';
+            } else {
+                customGrommetField.style.display = 'none';
+                section.querySelector('#cb_sb_customGrommet').value = '';
+            }
+        });
+    }
+}, 100);
 
     const finishingSelect = section.querySelector('#cb_sb_finishing');
 finishingSelect.addEventListener('change', (e) => {
@@ -2066,11 +2092,17 @@ createPoleBannerFields() {
     summary += `CUSTOM FINISHING DETAILS: ${sbCustomFinishing}\n`;
 }
                 if (sbGrommets) {
-                    summary += `GROMMETS: ${sbGrommets}\n`;
-                    if (sbGrommets === 'Yes' && sbGrommetPattern) {
-                        summary += `GROMMET PATTERN: ${sbGrommetPattern}\n`;
-                    }
-                }
+    summary += `GROMMETS: ${sbGrommets}\n`;
+    if (sbGrommets === 'Yes' && sbGrommetPattern) {
+        summary += `GROMMET PATTERN: ${sbGrommetPattern}\n`;
+        if (sbGrommetPattern === 'Custom') {
+            const sbCustomGrommet = formData.get('cb_sb_customGrommet');
+            if (sbCustomGrommet) {
+                summary += `CUSTOM GROMMET DETAILS: ${sbCustomGrommet}\n`;
+            }
+        }
+    }
+}
                 break;
                 
             case 'Pole Banner':
