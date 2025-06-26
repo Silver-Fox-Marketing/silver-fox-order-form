@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1651,6 +1652,13 @@ createStandardBannerFields() {
                 <option value="Sewn Hems with Webbing">Sewn Hems with Webbing</option>
                 <option value="Other/Custom">Other/Custom</option>
             </select>
+            <div id="cb_sb_customFinishingField" style="display: none;">
+    <div class="form-group">
+        <label for="cb_sb_customFinishing">Custom Finishing Description</label>
+        <input type="text" id="cb_sb_customFinishing" name="cb_sb_customFinishing" placeholder="Describe custom finishing...">
+    </div>
+</div>
+
         </div>
 
         <div class="form-group">
@@ -1698,6 +1706,18 @@ createStandardBannerFields() {
             });
         });
     }, 100);
+
+    const finishingSelect = section.querySelector('#cb_sb_finishing');
+finishingSelect.addEventListener('change', (e) => {
+    const customField = section.querySelector('#cb_sb_customFinishingField');
+    if (e.target.value === 'Other/Custom') {
+        customField.style.display = 'block';
+    } else {
+        customField.style.display = 'none';
+        section.querySelector('#cb_sb_customFinishing').value = '';
+    }
+});
+
 
     return section;
 }
@@ -1770,6 +1790,7 @@ createPoleBannerFields() {
             <label for="cb_pb_side2Design">Side 2 Design/Layout Details</label>
             <textarea id="cb_pb_side2Design" name="cb_pb_side2Design" placeholder="Enter side 2 design details..."></textarea>
         </div>
+
     `;
 
     // Add conditional logic for bracket fields
@@ -1788,6 +1809,8 @@ createPoleBannerFields() {
             });
         });
     }, 100);
+
+    
 
     return section;
 }
@@ -2030,6 +2053,7 @@ createPoleBannerFields() {
                 const sbHeight = formData.get('cb_sb_height');
                 const sbDesign = formData.get('cb_sb_designNotes');
                 const sbFinishing = formData.get('cb_sb_finishing');
+                const sbCustomFinishing = formData.get('cb_sb_customFinishing');
                 const sbGrommets = formData.get('cb_sb_grommets');
                 const sbGrommetPattern = formData.get('cb_sb_grommetPattern');
                 
@@ -2038,6 +2062,9 @@ createPoleBannerFields() {
                 if (sbHeight) summary += `HEIGHT: ${sbHeight}\n`;
                 if (sbDesign) summary += `DESIGN NOTES: ${sbDesign}\n`;
                 if (sbFinishing) summary += `FINISHING: ${sbFinishing}\n`;
+                if (sbFinishing === 'Other/Custom' && sbCustomFinishing) {
+    summary += `CUSTOM FINISHING DETAILS: ${sbCustomFinishing}\n`;
+}
                 if (sbGrommets) {
                     summary += `GROMMETS: ${sbGrommets}\n`;
                     if (sbGrommets === 'Yes' && sbGrommetPattern) {
